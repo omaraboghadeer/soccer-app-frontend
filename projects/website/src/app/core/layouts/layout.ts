@@ -7,7 +7,7 @@ import { Header } from "./header/header";
     selector: 'app-layout',
     imports: [Header, RouterOutlet, Footer],
     template: `
-        <header class="position-sticky top-0 bg-white shadow border-bottom border-success-subtle z-3">
+        <header class="position-absolute w-100 top-0 bg-transparent z-3">
             <app-header/>
         </header>
 

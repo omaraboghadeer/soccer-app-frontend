@@ -13,9 +13,9 @@
         "lib:data-access:build": "ng build data-access",
         "lib:auth:build": "ng build auth",
         
-        "website:start": "ng serve website",
-        "website:build": "ng build website",
-        "website:build:ssr": "ng build website --configuration=ssr"
+        "start:website": "ng serve website",
+        "build:website": "ng build website",
+        "build:website:ssr": "ng build website --configuration=ssr"
     },
     "prettier": {
         "printWidth": 100,

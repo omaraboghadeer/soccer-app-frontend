@@ -17,7 +17,7 @@ export class Header {
 
     navItems: NavItem[] = [
         { label: 'Home', link: '/' },
-        { label: 'Reservation', link: '/reservation' },
+        { label: 'Fields', link: '/fields' },
         { label: 'Events', link: '/events' },
         { label: 'FAQs', link: '/faqs' },
     ];

@@ -1,12 +1,13 @@
-<nav class="navbar navbar-expand-md bg-white">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-md bg-transparent">
+    <div class="container">
         <a class="navbar-brand" routerLink="/">
-            <div class="d-flex gap-2 align-items-center justify-content-center">
+            <!-- <div class="d-flex gap-2 align-items-center justify-content-center">
                 <span class="logo-sm h3 mb-0">
                     S8
                 </span>
                 <h3 class="fw-bold mb-0">Str8Kick</h3>
-            </div>
+            </div> -->
+            <h4 class="text-gray-25">Str8Kick</h4>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,8 +16,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-0">
                 @for (item of navItems; track $index) {
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" aria-current="page" routerLink="{{ item.link }}" routerLinkActive="active">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" aria-current="page" routerLink="{{ item.link }}" routerLinkActive="active">
                             {{ item.label }}
                         </a>
                     </li>
@@ -24,12 +25,19 @@
             </ul>
 
             <div class="d-flex gap-3">
+                <a role="button" class="btn btn-light pe-1 rounded-5" routerLink="/">
+                    Contact Us
+
+                    <span class="badge ms-2 bg-primary-600 rounded-circle">
+                        <i class="icon-arrow-up-right text-white" style="font-size: 0.5rem;"></i>
+                    </span>
+                </a>
                 <!-- <button class="btn btn-secondary" type="button" title="search" data-bs-toggle="collapse" data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
                     Search
                 </button> -->
-                <a routerLink="/login" title="login" class="btn" role="button">
+                <!-- <a routerLink="/login" title="login" class="btn" role="button">
                     <i class="icon-player fs-1"></i>
-                </a>
+                </a> -->
             </div>
         </div>
         
