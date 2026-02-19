@@ -1,0 +1,42 @@
+.card {
+    transition: border-color 0.3s, background-color 0.3s;
+    text-decoration: none;
+
+    &:hover {
+        background: color-mix(in srgb, oklch(51.01% .274 263.83) 5%, white 95%);
+
+        .content {
+            color: transparent;
+            background-position: 0% 0%;
+        }
+    }
+
+   &:not(:hover) {
+        .content {
+            color: white;
+            background-position: -100% 0%;
+        }
+    }
+
+    .content {
+        background: linear-gradient(
+            90deg,
+            #deb887,
+            #25935f,
+            #6a9b7e
+        );
+        background-size: 200% 100%;
+        background-position: -100% 0%;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        /* Animation */
+        transition:
+            background-position 0.45s cubic-bezier(.4, 0, .2, 1),
+            color 0.45s cubic-bezier(.4, 0, .2, 1);
+
+        will-change: background-position;
+    }
+
+}

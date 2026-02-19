@@ -1,0 +1,99 @@
+@use "sass:map";
+
+@include pci-dir(rtl) {
+    @include generate-utility(map.merge(map.get($utilities, "border-end"), (property: border-left)));
+    @include generate-utility(map.merge(map.get($utilities, "border-start"), (property: border-right)));
+    @include generate-utility(map.merge(map.get($utilities, "rounded-end"), (property: border-top-left-radius border-bottom-left-radius)));
+    @include generate-utility(map.merge(map.get($utilities, "rounded-start"), (property: border-bottom-right-radius border-top-right-radius)));
+    // @include generate-utility(map-merge(map-get($utilities, "text-align"), (responsive: true, values: (start: right, end: left, center: center))));
+
+}
+
+@include pci-dir(ltr) {
+    @include generate-utility(map.merge(map.get($utilities, "border-end"), (property: border-right)));
+    @include generate-utility(map.merge(map.get($utilities, "border-start"), (property: border-left)));
+    @include generate-utility(map.merge(map.get($utilities, "rounded-end"), (property: border-top-right-radius border-bottom-right-radius)));
+    @include generate-utility(map.merge(map.get($utilities, "rounded-start"), (property: border-bottom-left-radius border-top-left-radius)));
+    // @include generate-utility(map-merge(map-get($utilities, "text-align"), (responsive: true, values: (start: left, end: right, center: center))));
+}
+
+$utilities: map.merge(
+    $utilities,
+    (
+        "margin-end": map.merge(map.get($utilities, "margin-end"), ( property: margin-inline-end )),
+        "margin-start": map.merge(map.get($utilities, "margin-start"), ( property: margin-inline-start )),
+        "padding-end": map.merge(map.get($utilities, "padding-end"), ( property: padding-inline-end )),
+        "padding-start": map.merge(map.get($utilities, "padding-start"), ( property: padding-inline-start )),
+    )
+);
+
+$utilities: map.remove($utilities, "border-end", "border-start", "rounded-end", "rounded-start");
+
+@include media-breakpoint-up(lg) {
+    .position-absolute.position-lg-static {
+        position: static !important;
+    }
+}
+
+// Text color utilities
+$text-utility-colors: ();
+@each $color-name, $shades in $palette-map {
+    @each $shade, $value in $shades {
+        $text-utility-colors: map.merge(
+            $text-utility-colors,
+            (
+                "#{$color-name}-#{$shade}": $value
+            )
+        );
+    }
+}
+$utilities: map.merge(
+    $utilities,
+    (
+        "color": (
+            property: color,
+            class: text,
+            values: map.merge(
+                map.get($utilities, "color", "values"),
+                $text-utility-colors
+            )
+        )
+    )
+);
+
+// Background color utilities
+$utilities: map.merge(
+    $utilities,
+    (
+        "background-color": (
+            property: background-color,
+            class: bg,
+            local-vars: (
+                "text-opacity": 1
+            ),
+            values: map.merge(
+                map.get($utilities, "color", "values"),
+                $text-utility-colors
+            )
+        )
+    )
+);
+ 
+
+$utilities: map.merge(
+    $utilities,
+    (
+        "object-position": (
+            property: object-position,
+            class: object-position,
+            responsive: true,
+            values: (
+                top: top,
+                bottom: bottom,
+                left: left,
+                right: right,
+                center: center
+            ),
+        )
+    )
+);

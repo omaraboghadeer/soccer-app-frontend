@@ -1,0 +1,128 @@
+// Base class
+//
+// Requires one of the contextual, color modifier classes for `color` and
+// `background-color`.
+
+.badge {
+    // scss-docs-start badge-css-vars
+    --#{$prefix}badge-padding-x: #{$badge-padding-x};
+    --#{$prefix}badge-padding-y: #{$badge-padding-y};
+    @include rfs($badge-font-size, --#{$prefix}badge-font-size);
+    --#{$prefix}badge-font-weight: #{$badge-font-weight};
+    --#{$prefix}badge-line-height: #{$badge-line-height};
+    --#{$prefix}badge-bg: #{$badge-bg};
+    --#{$prefix}badge-color: #{$badge-color};
+    --#{$prefix}badge-border-width: #{$badge-border-width};
+    --#{$prefix}badge-border-color: #{$badge-border-color};
+    --#{$prefix}badge-border-radius: #{$badge-border-radius};
+    --#{$prefix}badge-height: #{$badge-height};
+    // scss-docs-end badge-css-vars
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: var(--#{$prefix}badge-height);
+    background-color: var(--#{$prefix}badge-bg);
+    padding: var(--#{$prefix}badge-padding-y) var(--#{$prefix}badge-padding-x);
+    @include font-size(var(--#{$prefix}badge-font-size));
+    font-weight: var(--#{$prefix}badge-font-weight);
+    line-height: var(--#{$prefix}badge-line-height);
+    color: var(--#{$prefix}badge-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border: var(--#{$prefix}badge-border-width) solid var(--#{$prefix}badge-border-color);
+    @include border-radius(var(--#{$prefix}badge-border-radius));
+    @include gradient-bg();
+
+    // Empty badges collapse automatically
+    &:empty {
+        display: none;
+    }
+}
+
+// Quick fix for badges in buttons
+.btn .badge {
+    position: relative;
+    top: -1px;
+}
+
+.badge-dark {
+    --#{$prefix}badge-bg: var(--#{$prefix}gray-50);
+    --#{$prefix}badge-color: var(--#{$prefix}gray-800);
+    --#{$prefix}badge-border-color: var(--#{$prefix}gray-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}gray);
+    }
+}
+
+.badge-light {
+    --#{$prefix}badge-bg: #{$white};
+    --#{$prefix}badge-color: var(--#{$prefix}gray-800);
+    --#{$prefix}badge-border-color: var(--#{$prefix}gray-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}gray);
+    }
+}
+
+.badge-success {
+    --#{$prefix}badge-bg: var(--#{$prefix}green-50);
+    --#{$prefix}badge-color: var(--#{$prefix}green-800);;
+    --#{$prefix}badge-border-color: var(--#{$prefix}green-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}green-700);
+    }
+}
+
+.badge-danger {
+    --#{$prefix}badge-bg: var(--#{$prefix}red-50);
+    --#{$prefix}badge-color: var(--#{$prefix}red-800);;
+    --#{$prefix}badge-border-color: var(--#{$prefix}red-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}red-700);
+    }
+}
+
+.badge-warning {
+    --#{$prefix}badge-bg: var(--#{$prefix}orange-50);
+    --#{$prefix}badge-color: var(--#{$prefix}orange-800);;
+    --#{$prefix}badge-border-color: var(--#{$prefix}orange-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}orange-700);
+    }
+}
+
+.badge-info {
+    --#{$prefix}badge-bg: var(--#{$prefix}blue-50);
+    --#{$prefix}badge-color: var(--#{$prefix}blue-800);;
+    --#{$prefix}badge-border-color: var(--#{$prefix}blue-200);
+
+    &.badge-outline {
+        --#{$prefix}badge-bg: transparent;
+        --#{$prefix}badge-border-color: var(--#{$prefix}blue-700);
+    }
+}
+
+.badge-lg {
+    --#{$prefix}badge-padding-x: #{$badge-padding-x-lg};
+    --#{$prefix}badge-height: #{$badge-height-lg};
+    --#{$prefix}badge-font-size: #{$badge-font-size-lg};
+    --#{$prefix}badge-line-height: #{$badge-line-height-lg};
+}
+
+.badge-sm {
+    --#{$prefix}badge-padding-x: #{$badge-padding-x-sm};
+    --#{$prefix}badge-height: #{$badge-height-sm};
+    --#{$prefix}badge-font-size: #{$badge-font-size-sm};
+    --#{$prefix}badge-line-height: #{$badge-line-height-sm};
+}

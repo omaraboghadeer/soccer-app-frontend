@@ -1,25 +1,72 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "preserve"
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  },
-  "files": []
+    "compileOnSave": false,
+    "compilerOptions": {
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "preserve",
+        "baseUrl": "./",
+        "paths": {
+            "@ui/*": [
+                "projects/ui/src/lib/*"
+            ],
+            "@domain/*": [
+                "projects/domain/src/lib/*"
+            ],
+            "@data-access/*": [
+                "projects/data-access/src/lib/*"
+            ],
+            "@auth/*": [
+                "projects/auth/src/lib/*"
+            ]
+        }
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    },
+    "files": [],
+    "references": [
+      {
+        "path": "./projects/website/tsconfig.app.json"
+      },
+      {
+        "path": "./projects/ui/tsconfig.lib.json"
+      },
+      {
+        "path": "./projects/ui/tsconfig.spec.json"
+      },
+      {
+        "path": "./projects/domain/tsconfig.lib.json"
+      },
+      {
+        "path": "./projects/domain/tsconfig.spec.json"
+      },
+      {
+        "path": "./projects/data-access/tsconfig.lib.json"
+      },
+      {
+        "path": "./projects/data-access/tsconfig.spec.json"
+      },
+      {
+        "path": "./projects/auth/tsconfig.lib.json"
+      },
+      {
+        "path": "./projects/auth/tsconfig.spec.json"
+      },
+      {
+        "path": "./projects/portal/tsconfig.app.json"
+      }
+    ]
 }

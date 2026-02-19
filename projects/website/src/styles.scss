@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@use "styles/index" as *;
+@import "swiper/swiper-bundle.css";
+
+.logo-sm {
+    display: inline-block !important;
+    padding: 1rem;
+    background-color: #25935f;
+    color: white;
+    font-weight: 900;
+    border-radius: 1rem;
+}
+
+.line {
+    margin: 3rem 0;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient( to right, transparent, #ccc, transparent);
+}

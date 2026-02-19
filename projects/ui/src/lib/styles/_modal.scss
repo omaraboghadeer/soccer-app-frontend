@@ -1,0 +1,25 @@
+.modal-content {
+    box-shadow: #{$box-shdow-3xl};
+}
+
+.modal-header {
+    justify-content: space-between;
+    border-bottom: none;
+    padding-bottom: 0;
+
+    .modal-close-btn {
+        margin-inline-end: calc(var(--#{$prefix}btn-padding-x) * -1);
+        margin-top: calc(var(--#{$prefix}btn-padding-x) * -3);
+    }
+}
+
+.modal-title {
+    @include font-size($h5-font-size);
+    font-weight: #{$font-weight-semibold};
+    padding: 0 #{$modal-header-padding-x};
+    margin-top: 0.5rem;
+}
+
+.modal-body {
+    padding-top: 0.5rem;
+}

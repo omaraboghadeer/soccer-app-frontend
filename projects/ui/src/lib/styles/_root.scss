@@ -1,0 +1,15 @@
+@use 'sass:meta';
+
+:root,
+[data-bs-theme="light"] {
+    @each $palette, $shades in $palette-map {
+        @each $shade, $value in $shades {
+            $var-name: if(
+                $shade == $default-shade,
+                "--#{$prefix}#{$palette}",
+                "--#{$prefix}#{$palette}-#{$shade}"
+            );
+            #{$var-name}: #{$value};
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.table > :not(caption) > * > * {
+    vertical-align: middle;
+} 
+
+.table > :not(caption) > * > th {
+    font-size: 0.75em;
+    background-color: var(--#{$prefix}gray-100);
+    color: var(--#{$prefix}gray-700);
+    font-weight: 500;
+    border-top: var(--#{$prefix}border-width) solid var(--#{$prefix}table-border-color);
+}
+
+.table > :not(caption) > * > th:not(:first-of-type) {
+    border-right: var(--#{$prefix}border-width)  solid var(--#{$prefix}table-border-color);
+}
+
+@include pci-dir(ltr) {
+    .table > :not(caption) > * > th:not(:first-of-type) {
+        border-right: none;
+        border-left: var(--#{$prefix}border-width)  solid var(--#{$prefix}table-border-color);
+    }
+}

@@ -1,0 +1,249 @@
+.form-control-container {
+    --#{$prefix}input-container-border-color: var(--#{$prefix}gray-950);
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 4px;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: var(--#{$prefix}input-container-border-color);
+        transform: translate(-50%);
+        @include transition(0.2s ease-in-out width);
+    }
+
+    &:has(.form-control:focus)::after,
+    &:has(.form-select:focus)::after {
+        width: 100%;
+    }
+
+    &:has(.form-control:invalid),
+    &:has(.form-control.is-invalid),
+    &:has(.form-control.is-invalid-from-server),
+    &:has(.form-select:invalid),
+    &:has(.form-select.is-invalid) {
+        --#{$prefix}input-container-border-color: var(
+            --#{$prefix}form-invalid-border-color
+        );
+    }
+
+    &.has-icon .form-input-icon {
+        position: absolute;
+    }
+}
+
+.form-label:has(+ .form-control-container input[required])::after,
+.form-label:has(+ .form-control-container textarea[required])::after,
+.form-label:has(+ .form-control-container select[required])::after,
+.form-label.required::after {
+    content: "*";
+    color: var(--#{$prefix}red);
+}
+
+.form-control,
+.form-select {
+    min-height: $input-height;
+    &:hover {
+        color: #{$input-hover-color};
+    }
+    &:not(.is-invalid):hover {
+        border-color: #{$input-hover-border-color};
+    }
+}
+
+.invalid-server-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: var(--#{$prefix}form-invalid-color);
+}
+
+.was-validated .is-invalid-from-server {
+    border-color: var(--#{$prefix}form-invalid-border-color);
+}
+
+.was-validated .form-control-container:has(:invalid),
+.form-control-container:has(.is-invalid) {
+    + .invalid-feedback {
+        display: block;
+        color: var(--#{$prefix}form-invalid-color);
+    }
+}
+
+.was-submitted .form-control-container:has(.is-invalid-from-server) {
+    ~ .invalid-server-feedback {
+        display: block;
+    }
+}
+
+.was-validated .form-field:has(:is(input, select, textarea):invalid, .is-invalid)
+    > .invalid-feedback {
+    display: block;
+    color: var(--#{$prefix}form-invalid-color);
+}
+
+/* server-side invalid */
+.was-submitted .form-field:has(.is-invalid-from-server)
+    > .invalid-server-feedback {
+    display: block;
+}
+
+.form-check {
+    position: relative;
+
+    &.form-switch {
+        min-height: auto;
+    }
+}
+
+.form-check-input {
+    position: relative;
+    z-index: 2;
+
+    &:not(:checked):active {
+        background-color: $form-check-input-active-bg-color;
+    }
+
+    &:checked:active {
+        background-color: var(--#{$prefix}primary-900);
+        border-color: var(--#{$prefix}primary-900);
+    }
+
+    &:checked:not(:active):hover {
+        background-color: var(--#{$prefix}primary-800);
+        border-color: var(--#{$prefix}primary-800);
+    }
+
+    &:focus-visible {
+        @include pci-outline();
+    }
+
+    &[type="radio"] {
+        &:checked,
+        &:checked:active,
+        &:checked:not(:active):hover {
+            background-color: transparent;
+        }
+
+        &:checked:active {
+            --#{$prefix}form-check-bg-image: #{escape-svg(
+                    $form-check-radio-active-bg-image
+                )};
+        }
+
+        &:checked:not(:active):hover {
+            --#{$prefix}form-check-bg-image: #{escape-svg(
+                    $form-check-radio-hover-bg-image
+                )};
+        }
+    }
+}
+
+.form-check:has(.form-check-input:hover)::before {
+    content: "";
+    position: absolute;
+    width: $form-check-input-width + 1em;
+    height: $form-check-input-width + 1em;
+    background-color: var(--#{$prefix}gray-100);
+    border-radius: 50%;
+    z-index: 1;
+    right: -0.5em;
+    top: -0.5em;
+}
+
+.form-switch .form-check-input {
+    &:not(:checked) {
+        border-color: var(--#{$prefix}body-color);
+    }
+
+    &:active {
+        border-color: var(--#{$prefix}gray-600);
+    }
+
+    &:not(:checked):hover {
+        --#{$prefix}form-switch-bg: #{escape-svg($form-switch-focus-bg-image)};
+        border-color: var(--#{$prefix}gray-600);
+    }
+}
+
+.form-check.form-switch:has(.form-check-input:hover)::before {
+    width: $form-switch-width + 0.5em;
+    height: $form-switch-width - 1em;
+    border-radius: $form-switch-width * 0.5;
+    right: -0.25em;
+    top: -0.25em;
+}
+
+.form-check-input:disabled {
+    background-color: var(--#{$prefix}gray-300);
+    border-color: transparent;
+}
+
+@include pci-dir(ltr) {
+    .form-check:has(.form-check-input:hover)::before {
+        right: 0;
+        left: -0.5em;
+    }
+
+    .form-check.form-switch:has(.form-check-input:hover)::before {
+        left: -0.25em;
+    }
+
+    .form-check.form-switch .form-check-input {
+        margin-right: 1rem;
+    }
+
+    .form-control-container.has-icon {
+        .form-input-icon {
+            left: $input-btn-padding-x;
+        }
+
+        .form-control {
+            padding-left: calc(#{$input-btn-padding-x} + 1.5rem);
+        }
+    }
+}
+
+@include pci-dir(rtl) {
+    .form-select {
+        padding: $form-select-padding-y $form-select-padding-x
+            $form-select-padding-y $form-select-indicator-padding !important;
+        background-position: left #{$form-select-padding-x} center !important;
+    }
+
+    .form-check {
+        padding-left: 0;
+        padding-right: $form-check-padding-start;
+    }
+    .form-check .form-check-input {
+        float: right;
+        margin-left: 0;
+        margin-right: $form-check-padding-start * -1;
+    }
+
+    .form-check.form-switch .form-check-input {
+        margin-left: 1rem;
+    }
+
+    .form-control-container.has-icon {
+        .form-input-icon {
+            right: $input-btn-padding-x;
+        }
+
+        .form-control {
+            padding-right: calc(#{$input-btn-padding-x} + 1.5rem);
+        }
+    }
+}
+
+form button[type="submit"]:not(.loading) .spinner-border {
+    display: none;
+}

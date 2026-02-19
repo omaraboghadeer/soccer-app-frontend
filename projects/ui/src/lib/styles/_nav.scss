@@ -1,0 +1,86 @@
+.nav {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+.nav:not(.nav-underline):not(.nav-tabs) {
+    --#{$prefix}nav-link-border-color: transparent;
+
+    .nav-link {
+        position: relative;
+        white-space: nowrap;
+
+        &.active {
+            --#{$prefix}nav-link-color: #{$nav-link-active-color};
+            font-weight: #{$nav-link-active-font-weight};
+            --#{$prefix}nav-link-border-color: #{$nav-link-active-border-color};
+        }
+
+        &:not(.active):hover {
+            --#{$prefix}nav-link-border-color: #{$nav-link-border-color};
+        }
+
+        &:focus-visible {
+            @include pci-outline();
+            outline-offset: 0;
+        }
+
+        &::before {
+            display: inline-block;
+            content: "";
+            position: absolute;
+            width: #{$nav-border-width};
+            height: calc(100% - (#{$nav-link-padding-y} * 2));
+            background-color: var(--#{$prefix}nav-link-border-color);
+            border-radius: 9999px;
+            top: 50%;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.nav.nav-underline {
+    flex-wrap: nowrap;
+    overflow: auto;
+    --#{$prefix}nav-underline-border-color: transparent;
+    box-shadow: 0 0 #0000, 0 0 #0000, inset 0 -3px var(--pci-border-color);
+
+    .nav-item {
+        padding: 0 #{$nav-underline-padding-x};
+        flex-grow: 1;
+        text-align: center;
+        .nav-link {
+            padding: #{$nav-underline-padding-y} 0;
+            border-radius: 0;
+            border-bottom-color: var(--#{$prefix}nav-underline-border-color);
+
+            &.active {
+                --#{$prefix}nav-underline-border-color: #{$nav-link-active-border-color};
+                font-weight: #{$nav-link-active-font-weight};
+            }
+
+            &:not(.active):hover {
+                --#{$prefix}nav-underline-border-color: #{$nav-link-border-color};
+            }
+
+            &:focus-visible {
+                @include pci-outline();
+                outline-offset: -2px;
+            }
+        }
+    }
+
+    &.nav-flush {
+        gap: 1.5rem;
+        box-shadow: none;
+        
+        .nav-item {
+            padding: 0;
+            flex-grow: 0;
+        }
+    }
+}
+

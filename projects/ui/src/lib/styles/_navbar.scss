@@ -1,0 +1,3 @@
+.rotation-transition {
+    @include transition($navbar-link-icon-transition);
+}

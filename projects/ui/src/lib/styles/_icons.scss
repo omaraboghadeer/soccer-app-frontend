@@ -1,0 +1,285 @@
+// U+3B5A,U+4AB7,U+4395,U+4A03,U+428C,U+47D1,U+41BF,U+3B6B,U+495E,U+3FE9,U+4296,U+4AAF,U+41CC,U+446B,U+4695,U+3DA7,U+49EC,U+3E05,U+3E51,U+4294,U+3D29,U+42EE,U+3BA5,U+3E84,U+3EBE,U+3FBE,U+4A70,U+409E,U+40C9,U+3E0F,U+3E23,U+41BE,U+3D42,U+4674,U+4767,U+4031,U+3B79,U+3B6A,U+4808,U+3FBD,U+48BB,U+3D51,U+3D5E,U+403D,U+4193,U+476F,U+45E9,U+45E8,U+4784,U+44F3,U+445E,U+4A50,U+3FF9,U+3B7A,U+3F73,U+46D7,U+43FF,U+435A,U+3E70,U+4777,U+40AB,U+44A6,U+409C,U+3B8D,U+3B8F,U+3B02
+
+// https://unicode-explorer.com/search => To get unicode
+// https://transfonter.org => To generate font face
+
+.hgi-stroke {
+    font-family: "hgi-stroke-rounded" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+.hgi-stroke:after {
+    opacity: 0.4;
+    position: absolute;
+    left: 0;
+}
+
+.hgi-stroke.hgi-arrow-down-01:before {
+    content: "㭚";
+}
+
+.hgi-stroke.hgi-zoom-in-area:before {
+    content: "䪷";
+}
+
+.hgi-stroke.hgi-mic-01:before {
+    content: "䎕";
+}
+
+.hgi-stroke.hgi-view:before {
+    content: "䨃";
+}
+
+.hgi-stroke.hgi-link-04:before {
+    content: "䊌";
+}
+
+.hgi-stroke.hgi-square-lock-password:before {
+    content: "䟑";
+}
+
+.hgi-stroke.hgi-information-diamond:before {
+    content: "䆿";
+}
+
+.hgi-stroke.hgi-arrow-left-02:before {
+    content: "㭫";
+}
+
+.hgi-stroke.hgi-translation:before {
+    content: "䥞";
+}
+
+.hgi-stroke.hgi-facebook-02:before {
+    content: "㿩";
+}
+
+.hgi-stroke.hgi-linkedin-02:before {
+    content: "䊖";
+}
+
+.hgi-stroke.hgi-youtube:before {
+    content: "䪯";
+}
+
+.hgi-stroke.hgi-instagram:before {
+    content: "䇌";
+}
+
+.hgi-stroke.hgi-new-twitter:before {
+    content: "䑫";
+}
+
+.hgi-stroke.hgi-search-01:before {
+    content: "䚕";
+}
+
+.hgi-stroke.hgi-checkmark-circle-02:before {
+    content: "㶧";
+}
+
+.hgi-stroke.hgi-user:before {
+    content: "䧬";
+}
+
+.hgi-stroke.hgi-clock-01:before {
+    content: "㸅";
+}
+
+.hgi-stroke.hgi-computer-phone-sync:before {
+    content: "㹑";
+}
+
+.hgi-stroke.hgi-link-square-02:before {
+    content: "䊔";
+}
+
+.hgi-stroke.hgi-call:before {
+    content: "㴩";
+}
+
+.hgi-stroke.hgi-mail-01:before {
+    content: "䋮";
+}
+
+.hgi-stroke.hgi-atom-02:before {
+    content: "㮥";
+}
+
+.hgi-stroke.hgi-court-house:before {
+    content: "㺄";
+}
+
+.hgi-stroke.hgi-cursor-pointer-01:before {
+    content: "㺾";
+}
+
+.hgi-stroke.hgi-electric-tower-01:before {
+    content: "㾾";
+}
+
+.hgi-stroke.hgi-wind-turbine:before {
+    content: "䩰";
+}
+
+.hgi-stroke.hgi-fuel-station:before {
+    content: "䂞";
+}
+
+.hgi-stroke.hgi-global:before {
+    content: "䃉";
+}
+
+.hgi-stroke.hgi-cloud-angled-zap:before {
+    content: "㸏";
+}
+
+.hgi-stroke.hgi-code-circle:before {
+    content: "㸣";
+}
+
+.hgi-stroke.hgi-information-circle:before {
+    content: "䆾";
+}
+
+.hgi-stroke.hgi-cancel-01:before {
+    content: "㵂";
+}
+
+.hgi-stroke.hgi-save-energy-01:before {
+    content: "䙴";
+}
+
+.hgi-stroke.hgi-soil-moisture-field:before {
+    content: "䝧";
+}
+
+.hgi-stroke.hgi-filter:before {
+    content: "䀱";
+}
+
+.hgi-stroke.hgi-arrow-right-01:before {
+    content: "㭹";
+}
+
+.hgi-stroke.hgi-arrow-left-01:before {
+    content: "㭪";
+}
+
+.hgi-stroke.hgi-structure-01:before {
+    content: "䠈";
+}
+
+.hgi-stroke.hgi-electric-plugs:before {
+    content: "㾽";
+}
+
+.hgi-stroke.hgi-test-tube-01:before {
+    content: "䢻";
+}
+
+.hgi-stroke.hgi-car-02:before {
+    content: "㵑";
+}
+
+.hgi-stroke.hgi-cargo-ship:before {
+    content: "㵞";
+}
+
+.hgi-stroke.hgi-fire:before {
+    content: "䀽";
+}
+
+.hgi-stroke.hgi-idea-01:before {
+    content: "䆓";
+}
+
+.hgi-stroke.hgi-solar-panel-04:before {
+    content: "䝯";
+}
+
+.hgi-stroke.hgi-recycle-03:before {
+    content: "䗩";
+}
+
+.hgi-stroke.hgi-recycle-02:before {
+    content: "䗨";
+}
+
+.hgi-stroke.hgi-sorting-up:before {
+    content: "䞄";
+}
+
+.hgi-stroke.hgi-pdf-02:before {
+    content: "䓳";
+}
+
+.hgi-stroke.hgi-navigation-03:before {
+    content: "䑞";
+}
+
+.hgi-stroke.hgi-whatsapp:before {
+    content: "䩐";
+}
+
+.hgi-stroke.hgi-file-01:before {
+    content: "㿹";
+}
+
+.hgi-stroke.hgi-arrow-right-02:before {
+    content: "㭺";
+}
+
+.hgi-stroke.hgi-download-04:before {
+    content: "㽳";
+}
+
+.hgi-stroke.hgi-share-08:before {
+    content: "䛗";
+}
+
+.hgi-stroke.hgi-more-horizontal:before {
+    content: "䏿";
+}
+
+.hgi-stroke.hgi-menu-01:before {
+    content: "䍚";
+}
+
+.hgi-stroke.hgi-cookie:before {
+    content: "㹰";
+}
+
+.hgi-stroke.hgi-sort-by-down-02:before {
+    content: "䝷";
+}
+
+.hgi-stroke.hgi-sort-by-down-02:before {
+    content: "䝷";
+}
+
+.hgi-stroke.hgi-gas-pipe:before {
+    content: "䂫";
+}
+
+.hgi-stroke.hgi-oil-barrel:before {
+    content: "䒦";
+}
+
+.hgi-stroke.hgi-fuel-01:before {
+    content: "䂜";
+}
+
+.hgi-stroke.hgi-arrow-up-left-01:before {
+    content: "㮍";
+}
+
+.hgi-stroke.hgi-arrow-up-right-01:before {
+    content: "㮏";
+}
+
+.hgi-stroke.hgi-alert-02:before {
+    content: "㬂";
+}

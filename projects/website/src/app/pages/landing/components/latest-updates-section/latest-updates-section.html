@@ -1,0 +1,32 @@
+<section class="bg-primary-500">
+    <div class="container py-5">
+        <h2 class="text-gray-25">News & Events</h2>
+        <p class="text-gray-25 mb-5">Stay updated with the latest from the street football community</p>
+
+        @if (!loading()) {
+            <pci-carousel>
+                @for (slide of updates(); track $index) {
+                    <pci-slide key="${index}">
+                        <pci-desc-card [info]="slide" />
+                    </pci-slide>
+                }
+            </pci-carousel>
+        } @else {
+
+            <!-- Skeleton (Placeholder) -->
+            <div class="row gap">
+                <div class="col">
+                    <pci-skeleton-card></pci-skeleton-card>
+                </div>
+                <div class="col d-none d-md-block">
+                    <pci-skeleton-card></pci-skeleton-card>
+                </div>
+                <div class="col d-none d-lg-block">
+                    <pci-skeleton-card></pci-skeleton-card>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</section>

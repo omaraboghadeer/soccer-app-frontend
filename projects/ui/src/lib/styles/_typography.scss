@@ -1,0 +1,42 @@
+@each $tag, $style in $heading-sizes {
+    #{$tag} {
+        @include heading-style($style);
+    }
+}
+
+a {
+    border-radius: 2px;
+    &:active {
+        color: $link-active-color;
+        text-decoration: $link-active-decoration;
+    }
+
+    &:focus-visible {
+        @include pci-outline();
+    }
+}
+
+.line-clamp {
+    --#{$prefix}clamp-lines: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--#{$prefix}clamp-lines);
+    line-clamp: var(--#{$prefix}clamp-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.max-clamp-line-2 {
+    --#{$prefix}clamp-lines : 2;
+}
+
+.max-clamp-line-4 {
+    --#{$prefix}clamp-lines : 4;
+}
+
+@include pci-dir(rtl) {
+    ol, ul {
+        padding-left: 0;
+        padding-right: 2rem;
+    }
+}

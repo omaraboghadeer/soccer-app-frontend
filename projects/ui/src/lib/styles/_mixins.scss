@@ -1,0 +1,23 @@
+@mixin heading-style($style) {
+    $line-height: map-get($style, line-height);
+    @if $line-height != null and $line-height != "" {
+        line-height: $line-height;
+    }
+
+    $tracking: map-get($style, tracking);
+    @if $tracking != null and $tracking != "" {
+        letter-spacing: $tracking;
+    }
+}
+
+@mixin pci-dir($direction) {
+    html[dir="#{$direction}"] {
+        @content;
+    }
+}
+
+@mixin pci-outline($color: null) {
+    $outline-color: if($color != null, $color, $focus-ring-color);
+    outline: #{$focus-ring-width} solid #{$outline-color};
+    outline-offset: #{$focus-ring-offset};
+}
