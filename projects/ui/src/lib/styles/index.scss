@@ -3,6 +3,8 @@
 @use "./fonts/icomoon/style.css";
 @import "./fonts";
 
+
+
 // Configuration
 @import "bootstrap/scss/functions";
 
@@ -158,3 +160,6 @@ $prefix: pci-;
         }
     }
 }
+
+
+@import "./ng-select";

@@ -1,0 +1,68 @@
+$ng-select-highlight: $primary-200 !default;
+$ng-select-primary-text: rgba(black, 0.87) !default;
+$ng-select-primary-light-text: rgba(white, 0.87) !default;
+$ng-select-secondary-text: rgba(black, 0.54) !default;
+$ng-select-secondary-light-text: rgba(white, 0.54) !default;
+$ng-select-disabled-text: $gray-400 !default;
+$ng-select-divider: rgba(black, 0.12) !default;
+$ng-select-bg: transparent !default;
+$ng-select-border: transparent !default;
+$ng-select-border-radius: 0px !default;
+
+$ng-select-selected: $gray-200 !default;
+$ng-select-dropdown-bg: $primary-50 !default;
+$ng-select-dropdown-border: $gray-200 !default;
+
+
+.ng-select {
+    &.ng-select-focused {
+        .ng-select-container {
+            &:after {
+                border-color: $ng-select-highlight;
+                border-width: 0;
+            }
+
+            &.ng-appearance-outline {
+
+                &:after,
+                &:hover:after {
+                    border-color: $ng-select-highlight;
+                    border-width: 0;
+                }
+            }
+
+            &.ng-appearance-fill {
+                &:after {
+                    border-color: $ng-select-highlight;
+                    border-width: 0 0 0;
+                }
+            }
+
+            .ng-value-container .ng-placeholder {
+                transform: translateY(-1.28125em) scale(0.75) perspective(100px) translateZ(0.001px);
+                color: $ng-select-highlight;
+            }
+
+            .ng-arrow-wrapper .ng-arrow {
+                color: $ng-select-highlight;
+            }
+        }
+    }
+
+
+    .ng-arrow-wrapper .ng-arrow {
+        border-style: none !important;
+        display: none;
+    }
+
+    .ng-arrow-wrapper {
+        --drowdown-arrow-svg: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none"%3e%3cpath d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9" stroke="%230d121c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3e%3c/path%3e%3c/svg%3e');
+        background-image: var(--drowdown-arrow-svg);
+        background-repeat: no-repeat;
+        background-size: 1.25rem;
+        background-position: center;
+    }
+}
+
+
+@import "@ng-select/ng-select/scss/default.theme.scss";
