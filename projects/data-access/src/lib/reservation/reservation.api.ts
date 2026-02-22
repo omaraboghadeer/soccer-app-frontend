@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Reservation } from '@domain/reservation/reservation.model';
 import { ReservationRepository } from '@domain/reservation/reservation.repository';
-import { lastValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +10,12 @@ import { lastValueFrom } from 'rxjs';
 export class ReservationApiService extends ReservationRepository {
     private readonly http = inject(HttpClient);
 
-    async createReservation(payload: Reservation): Promise<Reservation> {
-        return lastValueFrom(this.http.post<Reservation>('/reservations', payload))
+    createReservation(payload: Reservation): Observable<Reservation> {
+        return this.http.post<Reservation>('/reservations', payload)
     }
 
-    async getReservations(): Promise<Reservation[]> {
-        return lastValueFrom(this.http.get<Reservation[]>('/reservations'))
+    getReservations(): Observable<Reservation[]> {
+        return this.http.get<Reservation[]>('/reservations')
     }
   
 }
