@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     selector: 'app-our-features-section',
     imports: [NgClass],
     template: `
-        <section class="bg-white">
+        <section>
             <div class="container py-5">
                 <h2>Everything You Need</h2>
                 <p>All the tools to elevate your street football experience</p>
