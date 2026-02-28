@@ -1,0 +1,71 @@
+<div class="row g-3">
+    <div class="col-12 d-flex align-items-center gap-3">
+        @for (type of fieldsType(); track $index) {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault{{ $index }}">
+                <label class="form-check-label" for="radioDefault{{ $index }}">
+                    {{ type }}
+                </label>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-6 col-12">
+        <div class="input-group ">
+            <span class="badge bg-primary-600 rounded-circle me-2" id="field-location">
+                <i class="icon-egypt-map text-white"></i>
+            </span>
+            <ng-select
+                [items]="governorates()" 
+                bindLabel="name_en" 
+                bindValue="id"
+                class="flex-grow-1"
+                placeholder="Select Governorate"
+                (change)="onSelectGovernorate($event)"
+            />
+        </div>
+    </div>
+
+    <div class="col-md-6 col-12">
+        <div class="input-group">
+            <span class="badge bg-primary-600 rounded-circle me-2" id="field-location">
+                <i class="icon-map-pin text-white"></i>
+            </span>
+            <ng-select
+                [items]="cities()" 
+                bindLabel="name_en" 
+                bindValue="id"
+                class="flex-grow-1"
+                placeholder="Select City"
+                (change)="onSelectCity($event)"
+            />
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-3">
+    @for (field of paginatedFields(); track $index) {
+        <div class="col-md-4 col-12">
+            <lib-radio-card 
+                [ctrlName]="'field'" 
+                [id]="field.id" 
+                [data]="field"
+                (selectionChange)="_reservationState.selectedField.set(field)">
+            </lib-radio-card>
+        </div>
+    }
+
+    <div class="col-12">
+        <div class="d-flex justify-content-end gap-2">
+            <button type="button" class="btn btn-outline-primary" 
+                (click)="page.set(page() - 1)" [hidden]="page() === 1">
+                <i class="icon-arrow-left"></i>
+            </button>
+            <button type="button" class="btn btn-outline-primary" 
+                (click)="page.set(page() + 1)"
+                [disabled]="page() * pageSize() >= fields().length">
+                <i class="icon-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
