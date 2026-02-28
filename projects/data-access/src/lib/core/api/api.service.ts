@@ -7,6 +7,4 @@ export class ApiService {
     protected readonly http = inject(HttpClient);
     protected readonly config = inject(API_CONFIG);
     protected readonly baseUrl = this.config.baseUrl;
-    
-    protected readonly localAPIs = this.config.localAPIs;
 }

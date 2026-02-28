@@ -10,6 +10,14 @@ import * as FIELDS from '../data/static/fields.json';
 })
 export class FieldService extends ApiService implements FieldRepository {
 
+    getAllFields(): Observable<FieldModel[]> {
+        return of(FIELDS.data);
+    }
+
+    getFieldsByGovernorate(govId: string): Observable<FieldModel[]> {
+        return of(FIELDS.data.filter(field => field.address.governorate.id === govId));
+    }
+
     getFieldsByCity(cityId: string): Observable<FieldModel[]> {
         return of(FIELDS.data.filter(field => field.address.city.id === cityId));
     }

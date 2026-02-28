@@ -1,7 +1,14 @@
 import { DatePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { DescCardDto } from '@domain/cards/desc-card.dto';
 
+interface DescCardDto {
+    title: string;
+    description: string;
+    imageUrl: string;
+    category: string;
+    publishedAt: Date;
+    url: string;
+}
 
 @Component({
     selector: 'pci-desc-card',

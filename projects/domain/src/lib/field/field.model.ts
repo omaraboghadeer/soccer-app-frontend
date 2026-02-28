@@ -27,5 +27,6 @@ export interface FieldModel {
     hourlyPrice: number, // 100 EGP
     workingStartHour: number,  // 4:00 PM => 16
     workingEndHour: number,    // 4:00 AM => 4
-    ownerId: string | null
+    ownerId: string | null,
+    images?: string[],
 }
