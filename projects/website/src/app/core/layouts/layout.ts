@@ -21,7 +21,9 @@ import { NgClass } from '@angular/common';
         </main>
         
         <footer>
-            <app-footer/>
+            <div class="grid-container bg-white rounded-3 py-5">
+                <app-footer/>
+            </div>
         </footer>
     `,
 })

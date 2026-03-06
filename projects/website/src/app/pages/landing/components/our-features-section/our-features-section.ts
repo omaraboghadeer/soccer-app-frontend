@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
     imports: [NgClass],
     template: `
         <section>
-            <div class="container py-5">
+            <div class="container py-6">
                 <h2>Everything You Need</h2>
                 <p>All the tools to elevate your street football experience</p>
 
-                <div class="row g-4 mt-4">
+                <div class="row g-4 mt-2">
                     
                     @for (tool of features; track $index) {
                         <div class="col-lg-3 col-md-6 col-12">
