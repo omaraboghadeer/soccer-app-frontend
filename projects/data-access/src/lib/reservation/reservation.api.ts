@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Reservation } from '@domain/reservation/reservation.model';
 import { ReservationRepository } from '@domain/reservation/reservation.repository';
 import { Observable } from 'rxjs';
+import { ApiService } from '../../public-api';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ReservationApiService extends ReservationRepository {
-    private readonly http = inject(HttpClient);
+export class ReservationApiService extends ApiService implements ReservationRepository {
 
     createReservation(payload: Reservation): Observable<Reservation> {
         return this.http.post<Reservation>('/reservations', payload)
@@ -16,6 +15,10 @@ export class ReservationApiService extends ReservationRepository {
 
     getReservations(): Observable<Reservation[]> {
         return this.http.get<Reservation[]>('/reservations')
+    }
+
+    getReservationsByRef(ref: string): Observable<{success: boolean, data: Reservation}> {
+        return this.http.get<{success: boolean, data: Reservation}>(`${this.baseUrl}/bookings/ref/${ref}`);
     }
   
 }

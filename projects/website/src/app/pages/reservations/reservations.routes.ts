@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const RESERVATIONS_ROUTES: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
     {
         path: '',
-        loadComponent: () => import('./pages/list/list.page').then(p => p.ListPage)
+        loadComponent: () => import('./pages/my-reservation/my-reservation.page').then(p => p.MyReservationPage)
     },
     {
         path: 'new',

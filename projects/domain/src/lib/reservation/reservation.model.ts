@@ -1,5 +1,4 @@
-import { Field } from "@domain/field/field.model";
-import { PlayersCount } from "@domain/field/field.model";
+import { FieldModel, FieldSize } from "@domain/field/field.model";
 
 export interface Reservation {
     id?: string;
@@ -7,7 +6,7 @@ export interface Reservation {
     mobile: string;
     date: string;
     time: string;
-    field: Field;       // reference to a field
-    players: PlayersCount;
+    field: FieldModel;       // reference to a field
+    players: FieldSize;
     note?: string;
 }

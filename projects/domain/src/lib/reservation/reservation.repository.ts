@@ -1,7 +1,8 @@
 import { Observable } from "rxjs";
 import { Reservation } from "./reservation.model";
 
-export abstract class ReservationRepository {
-    abstract createReservation(reservation: Reservation): Observable<Reservation>;
-    abstract getReservations(): Observable<Reservation[]>;
+export interface ReservationRepository {
+    createReservation(reservation: Reservation): Observable<Reservation>;
+    getReservations(): Observable<Reservation[]>;
+    getReservationsByRef(ref: string): Observable<{success: boolean, data: Reservation}>;
 }
