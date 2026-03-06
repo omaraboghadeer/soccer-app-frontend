@@ -22,7 +22,7 @@ export class LatestUpdatesSection {
 
     constructor() {
         effect(() => {
-            this.loadLatestUpdates();
+            // this.loadLatestUpdates();
         });
     }
 
