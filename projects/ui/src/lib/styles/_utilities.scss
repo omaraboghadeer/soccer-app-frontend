@@ -98,6 +98,25 @@ $utilities: map.merge(
 );
  
 
+// Font Size
+$other-font-sizes: (
+    7: 1rem,
+    8: 0.875rem, // 14px
+    9: 0.75rem, // 12 
+);
+$merged-font-sizes: map.merge($font-sizes, $other-font-sizes);
+$utilities: map.merge(
+    $utilities, 
+    (
+        "font-size": (
+            property: font-size,
+            class: fs,
+            rfs: true,
+            values: $merged-font-sizes
+        )
+    )
+);
+
 $utilities: map.merge(
     $utilities,
     (

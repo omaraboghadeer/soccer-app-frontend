@@ -61,6 +61,15 @@ h1, h2, h3, h4, h5, h6, p {
     }
 }
 
+.btn {
+    .badge {
+        height: 30px;
+        width: 30px;
+        display: grid;
+        align-content: center;
+    }
+}
+
 .card-glass {
   background: rgba(255, 255, 255, 0.15); 
   border-radius: 1rem;

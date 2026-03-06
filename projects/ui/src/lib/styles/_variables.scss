@@ -235,7 +235,7 @@ $body-tertiary-color: #64748B;
 
 // scss-docs-start theme-color-variables
 $primary: $primary-600;
-$secondary: $gold-600;
+$secondary: $gray-600;
 $success: $green-600;
 $info: $blue-600;
 $warning: $orange-600;
@@ -268,25 +268,51 @@ $link-hover-decoration: underline;
 $link-active-color: $primary-300;
 $link-active-decoration: underline;
 
+
 // scss-docs-start grid-breakpoints
 $grid-breakpoints: (
     xs: 0,
-    sm: 375px,
+    sm: 576px,
     md: 768px,
-    lg: 1280px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
 );
 // scss-docs-end grid-breakpoints
 
 // scss-docs-start container-max-widths
 $container-max-widths: (
-    // sm: 343px,
-    // md: 704px,
-    // lg: 1280px,
-    sm: 375px,
-    md: 768px,
-    lg: 1280px,
-);
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl: 1320px
+) !default;
 // scss-docs-end container-max-widths
+
+/* DGA widths */
+
+// scss-docs-start grid-breakpoints
+// $grid-breakpoints: (
+//     xs: 0,
+//     sm: 375px,
+//     md: 768px,
+//     lg: 1280px,
+// );
+// // scss-docs-end grid-breakpoints
+
+// // scss-docs-start container-max-widths
+// $container-max-widths: (
+//     // sm: 343px,
+//     // md: 704px,
+//     // lg: 1280px,
+//     sm: 375px,
+//     md: 768px,
+//     lg: 1280px,
+// );
+// // scss-docs-end container-max-widths
+
+/* DGA widths */
 
 // scss-docs-start border-variables
 $border-color: $gray-300;
