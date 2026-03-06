@@ -12,6 +12,33 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
+// Global styles
+
+.grid-container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+
+    @include media-breakpoint-up(sm) {
+        max-width: 576px;
+    }
+
+    @include media-breakpoint-up(md) {
+        max-width: 768px;
+    }
+
+    @include media-breakpoint-up(lg) {
+        max-width: 992px;
+    }
+
+    @include media-breakpoint-up(xl) {
+        max-width: 1200px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+        max-width: 1440px;
+    }
+}
 
 .logo-sm {
     display: inline-block !important;
@@ -71,9 +98,9 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .card-glass {
-  background: rgba(255, 255, 255, 0.15); 
-  border-radius: 1rem;
-  backdrop-filter: blur(5px); 
-  -webkit-backdrop-filter: blur(5px); 
-  padding: 1rem;
+    background: rgba(255, 255, 255, 0.15); 
+    border-radius: 1rem;
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px); 
+    padding: 1rem;
 }

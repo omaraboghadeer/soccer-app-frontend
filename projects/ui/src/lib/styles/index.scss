@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // scss-docs-start import-stack
 
 @use "./fonts/icomoon/style.css";
@@ -14,6 +16,16 @@ $prefix: pci-;
 
 @import "bootstrap/scss/variables-dark";
 @import "./variables-dark";
+
+// Spacers
+$spacers: map.merge(
+    $spacers, 
+    (
+        6: $spacer * 3.5,
+        7: $spacer * 4,
+        8: $spacer * 4.5,
+    )
+);
 
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";

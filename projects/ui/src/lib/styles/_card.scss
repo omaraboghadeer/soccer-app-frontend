@@ -1,3 +1,7 @@
+.card {
+    --pci-card-border-color: black;
+}
+
 .icon-container {
     border-radius: 8px;
     display: flex;
@@ -68,19 +72,6 @@
         position: relative;
         display: inline-block;
         width: fit-content;
-
-        // linear-gradient( 
-        //     140deg, 
-        //     var(--vivid-pink) 0%, 
-        //     var(--vivid-pink) 15%, 
-        //     color-mix(in srgb, var(--vivid-pink), var(--electric-violet) 50%) 25%, 
-        //     color-mix(in srgb, var(--vivid-pink), var(--electric-violet) 10%) 35%, 
-        //     color-mix(in srgb, var(--vivid-pink), var(--orange-red) 50%) 42%, 
-        //     color-mix(in srgb, var(--vivid-pink), var(--orange-red) 50%) 44%, 
-        //     color-mix(in srgb, var(--vivid-pink), var(--page-background) 70%) 47%, 
-        //     var(--electric-violet) 48%, 
-        //     var(--bright-blue) 60% 
-        // )
 
         background: linear-gradient(
             140deg,
