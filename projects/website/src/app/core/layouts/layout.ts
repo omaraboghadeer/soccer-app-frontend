@@ -11,7 +11,7 @@ import { NgClass } from '@angular/common';
     imports: [Header, RouterOutlet, Footer, NgClass],
     template: `
         <header class="w-100 top-0 z-3"
-            [ngClass]="isHome() ? 'position-absolute bg-transparent' : 'bg-white border-bottom border-gray-200' "
+            [ngClass]="isHome() ? 'position-absolute bg-transparent' : 'position-sticky bg-white border-bottom border-gray-200' "
         >
             <app-header [isHomePage]="isHome()" />
         </header>

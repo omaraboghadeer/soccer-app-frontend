@@ -18,13 +18,34 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto mb-0">
                 @for (item of navItems; track $index) {
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" 
-                            [ngClass]="{'in-home': isHomePage()}"
-                            aria-current="page" routerLink="{{ item.link }}" routerLinkActive="active">
-                            {{ item.label }}
-                        </a>
-                    </li>
+                    @if (item.children) {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" 
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                routerLinkActive="active"
+                                >
+                                {{ item.label }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @for (sub of item.children; track $index) {
+                                    <li>
+                                        <a class="dropdown-item" routerLink="{{sub.link}}" routerLinkActive="active">
+                                            {{ sub.label }}
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>   
+                    }
+                    @else {
+                        <li class="nav-item mx-2">
+                            <a class="nav-link" 
+                                [ngClass]="{'in-home': isHomePage()}"
+                                aria-current="page" routerLink="{{ item.link }}" routerLinkActive="active">
+                                {{ item.label }}
+                            </a>
+                        </li>
+                    }
                 }
             </ul>
 
