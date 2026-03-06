@@ -1,0 +1,184 @@
+@if (false) {
+    <div class="card card-body bg-white shadow">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="images/default-images.png" 
+                    class="w-100 object-fit-cover object-fit-position-center rounded-2" 
+                    alt="default image" height="100"
+                />
+            </div>
+            <div class="col">
+                <h5 class="card-title mb-0">
+                    Field name
+                </h5>
+                <a href="javascript::void(0)" role="button" (click)="openMap()" title="Open in Google Mapp">
+                    <p class="card-text">
+                        <i class="icon-map-pin"></i>
+                        Al-Malaz, Riyadh
+                    </p>
+                </a>
+    
+                <div class="d-flex gap-3 mb-2">
+                    <a [href]="'tel:' + 966565847484" title="Field Mobile number">
+                        <p class="card-text">
+                            <i class="icon-phone"></i>
+                            {{ +966565847484 }}
+                        </p>
+                    </a>
+                    
+                </div>
+    
+                <div class="rates d-flex gap-1 ">
+                    <div class="badge text-bg-primary">
+                        4.3
+                    </div>
+                    <p style="font-size: 13px;" class="lh-1 fw-bold">
+                        <small>Excellent </small> <br> 
+                        <small>1,225 Reviews</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="line"></div>
+    
+        <div class="d-flex gap-4">
+            <div class="flex-grow-1">
+                <p>
+                    <i class="icon-pitch"></i>
+                    <small>COURT</small>
+                </p>
+                <h5>4</h5>
+            </div>
+            <div class="flex-grow-1">
+                <p>
+                    <small>PLAYERS</small>
+                </p>
+                <h5>5 VS 5</h5>
+            </div>
+            <div class="flex-grow-1">
+                <p>
+                    <small>DATE</small>
+                </p>
+                <h5>{{ today | date: 'fullDate' }}</h5>
+            </div>
+            <div class="flex-grow-1">
+                <p>
+                    <small>TIME SLOT</small>
+                </p>
+                <h5> 21:00 - 22:00 </h5>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="card bg-white shadow overflow-auto">
+    <div class="row g-0">
+        <div class="col-md-3">
+            <img src="images/default-images.png" 
+                class="w-100 h-100 object-fit-cover object-fit-position-center" 
+                alt="default image" 
+            />
+        </div>
+        <div class="col-md-9">
+            <div class="card-body gap-4">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title mb-0">
+                            {{ field_info().name }}
+                        </h5>
+                        <div class="d-flex gap-3">
+                            <a href="javascript::void(0)" class="align-self-start fs-8" role="button" (click)="openMap()" title="Open in Google Mapp">
+                                <p class="card-text">
+                                    <i class="icon-map-pin"></i>
+                                    Al-Malaz, Riyadh
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="card-text mb-0">
+                        <small>Booking ID</small> <br> 
+                        <strong>{{field_info().bookingInfo.booking_reference}}</strong>
+                    </p>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <ng-container 
+                        [ngTemplateOutlet]="bookingInfoTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'date',
+                            data: field_info().bookingInfo.date
+                        } }"
+                    ></ng-container>
+                    <ng-container 
+                        [ngTemplateOutlet]="bookingInfoTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'time slot',
+                            data: field_info().bookingInfo.time
+                        } }"
+                    ></ng-container>
+                    <ng-container 
+                        [ngTemplateOutlet]="bookingInfoTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'duration',
+                            data: (field_info().bookingInfo.duration + ' Hours')
+                        } }"
+                    ></ng-container>
+                    <ng-container 
+                        [ngTemplateOutlet]="bookingInfoTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'players',
+                            data: field_info().bookingInfo.fieldSize
+                        } }"
+                    ></ng-container>
+                </div>
+
+                <div class="d-flex align-items-center gap-4">
+                    <p class="card-text mb-0">
+                        <i class="icon-user-tie me-1"></i>
+                        {{ field_info().ownerId}}
+                    </p>
+                    <a [href]="'tel:'+field_info().phone" class="fs-8 text-gray-900" title="Field Mobile number">
+                        <p class="card-text">
+                            <i class="icon-phone"></i>
+                            {{ field_info().phone }}
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer py-3 bg-white d-flex gap-3 justify-content-end">
+                <button type="button" class="btn btn-outline-primary" 
+                    title="Download Your Ticket" 
+                    (click)="field_info().actions('DOWNLOAD')">
+                    <i class="icon-arrow-down me-1"></i>
+                    Download
+                </button>
+
+                <button type="button" class="btn btn-outline-warning" 
+                    title="Edit Your Reservation" 
+                    (click)="field_info().actions('EDIT')">
+                    <i class="icon-edit me-1"></i>
+                    Reschedule
+                </button>
+
+                <button type="button" class="btn btn-outline-danger" 
+                    title="Cancel Your Reservation" 
+                    (click)="field_info().actions('CANCEL')">
+                    <i class="icon-bin me-1"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #bookingInfoTemp let-item>
+    <div class="flex-grow-1 bg-gray-100 rounded px-2 py-1 text-center">
+        <p>
+            <small class="text-uppercase">{{item.label}}</small>
+        </p>
+        <h5> {{item.data}} </h5>
+    </div>
+</ng-template>
