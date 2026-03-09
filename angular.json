@@ -304,6 +304,18 @@
             "root": "projects/auth",
             "sourceRoot": "projects/auth/src",
             "prefix": "lib",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss",
+                    "skipTests": true
+                },
+                "@schematics/angular:service": {
+                    "skipTests": true
+                },
+                "@schematics/angular:guard": {
+                    "skipTests": true
+                }
+            },
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",

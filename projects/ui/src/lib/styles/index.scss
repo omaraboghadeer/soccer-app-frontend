@@ -175,3 +175,13 @@ $spacers: map.merge(
 
 
 @import "./ng-select";
+
+
+.ngx-otp-input-box {
+    width: 40px !important;
+    height: 45px !important;
+}
+
+.ngx-otp-input-active {
+    border-color: var(--pci-primary) !important;
+}

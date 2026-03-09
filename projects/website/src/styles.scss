@@ -41,12 +41,15 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .logo-sm {
-    display: inline-block !important;
-    padding: 1rem;
+    display: inline-grid;
+    place-content: center;
+    height: 40px;
+    width: 40px;
     background-color: #25935f;
     color: white;
-    font-weight: 900;
-    border-radius: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
 .line {
@@ -104,3 +107,85 @@ h1, h2, h3, h4, h5, h6, p {
     -webkit-backdrop-filter: blur(5px); 
     padding: 1rem;
 }
+
+// Stepper
+.stepper-steps {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0;
+}
+
+
+.vertical-step-container {
+    .stepper-step {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        position: relative;
+
+        &:not(:last-child) {
+            padding-bottom: 3rem;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset-inline-start: .95rem;
+                top: 2rem;
+                height: 100%;
+                width: .125rem;
+                background-color: #d2d6db;
+                z-index: 1;
+            }
+        }
+
+        &.active {
+            .step-label {
+                color: var(--pci-primary-700);
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .step-icon {
+                background-color: #fff;
+                color: var(--pci-primary-700);
+                border: .125rem solid var(--pci-primary-700);
+            }
+        }
+
+        &.completed {
+            .step-icon {
+                background-color: var(--pci-primary-700);
+                color: #fff;
+                border: none;
+                cursor: pointer;
+            }
+
+            .step-label {
+                color: var(--Stepper-stepper-text-primary, #1f2a37);
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5rem;
+            }
+        }
+    }
+
+    .step-icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background-color: #fff;
+        border: .125rem solid rgb(210, 214, 219);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        transition: all .3s ease;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        color: #d2d6db;
+    }
+}
+

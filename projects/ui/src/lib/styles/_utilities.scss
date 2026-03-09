@@ -53,6 +53,9 @@ $utilities: map.merge(
         "color": (
             property: color,
             class: text,
+            local-vars: (
+                "text-opacity": 1
+            ),
             values: map.merge(
                 map.get($utilities, "color", "values"),
                 $text-utility-colors
