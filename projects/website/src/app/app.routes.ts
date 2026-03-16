@@ -18,5 +18,9 @@ export const routes: Routes = [
                 loadChildren: () => import('./pages/reservations/reservations.routes').then(r => r.RESERVATIONS_ROUTES)
             }
         ]
+    },
+    {
+        path: "auth",
+        loadChildren: () => import('@auth/auth.routes').then(r => r.AUTH_ROUTES)
     }
 ];

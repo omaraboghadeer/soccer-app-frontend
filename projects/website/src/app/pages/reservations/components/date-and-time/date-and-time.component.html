@@ -41,7 +41,7 @@
                 <button class="btn btn-primary btn-lg" type="button" 
                     data-bs-toggle="collapse" data-bs-target="#bookingTotalPrice" 
                     aria-expanded="false" aria-controls="bookingTotalPrice">
-                    Total Price: {{ selectedSlots().length * _reservationState.selectedField()!.hourlyPrice }} EGP
+                    Total Price: {{ selectedSlots().length * _reservationState.selectedField()!.price }} EGP
                     <i class="icon-arrow-up ms-2"></i>
                 </button>
                 
@@ -53,7 +53,7 @@
                                 <li class="list-group-item d-flex gap-2 justify-content-between align-items-center">
                                     {{ slot.start }} - {{ slot.end }}
                                     <span class="badge bg-primary-600 rounded-pill text-white">
-                                        {{ _reservationState.selectedField()!.hourlyPrice }} EGP
+                                        {{ _reservationState.selectedField()!.price }} EGP
                                     </span>
                                 </li>
                             }

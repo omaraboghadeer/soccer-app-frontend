@@ -1,0 +1,125 @@
+<h2>
+    Join Str8Kick
+</h2>
+<p class="text-muted ">
+    Enter your details below to create your account and get started
+</p>
+
+
+<!-- Stepper -->
+<div class="row mt-5">
+    <!-- Steps -->
+    <div class="col-lg-3">
+        <div class="vertical-step-container">
+            <ul class="stepper-steps">
+                @for (step of steps(); track $index) {
+                    <li class="stepper-step" 
+                        [class.active]="step.active" 
+                        [class.completed]="step.completed">
+                        <div class="step-icon">
+                            <div class="step-number">{{ $index + 1 }}</div>
+                        </div>
+                        <p class="step-label">{{ step.label }}</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="col-lg-9">
+        <div class="step-content">
+
+            @switch (steps()[currentStepIndex()].step) {
+                @case (1) {
+                    <h3>{{ steps()[currentStepIndex()].title }}</h3>
+                    <p class="fs-8">
+                        <span class="text-muted">
+                            Already have an account?
+                        </span> 
+                        <a role="button" routerLink="/auth/login">Login</a>
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        @for (type of signupTypes(); track type.id) {
+                            <ng-container 
+                                [ngTemplateOutlet]="radioCardTemp"
+                                [ngTemplateOutletContext]="{ $implicit: {
+                                    id: type.id,
+                                    icon: type.icon,
+                                    label: type.label,
+                                    value: type.value,
+                                    ctrlName: 'signuptype',
+                                    isDisabled: (currentStepIndex() !== 0),
+                                } }"
+                            ></ng-container>
+                        }
+                    </div>
+                }
+                @case (2) {
+                    <h3>{{ steps()[currentStepIndex()].title }}</h3>
+                    <lib-normal-user-form />
+                }
+                @case (4) {
+                    <h3>{{ steps()[currentStepIndex()].title }}</h3>
+                    <lib-field-form/>
+                }
+                @case (3) {
+                    <lib-otp
+                        [duration]="60"
+                        [title]="'Mobile verification'"
+                        [subtitle]="'Introduce the 4-digits verification code sent to +966 565 847484'"
+                        (onValidate)="handleOTPActions($event)"
+                    />
+                }
+            }
+        </div>
+
+        <div class="d-flex justify-content-end gap-3 mt-5">
+            <button class="btn btn-secondary" 
+                type="button"
+                (click)="previousStep()" 
+                [hidden]="currentStepIndex() === 0">
+                Previous
+            </button>
+
+            @if (currentStepIndex() === steps().length - 1) {
+                <button type="button" class="btn btn-primary" (click)="submitUserInfo()">
+                    Confirm
+                </button>
+            } @else {
+                <button class="btn btn-primary"
+                    type="button" 
+                    (click)="nextStep()" >
+                    Next
+                </button>
+            }
+        </div>
+    </div>
+</div>
+
+
+<ng-template #radioCardTemp let-item>
+    <div class="radio-card">
+        <input type="radio" class="d-none" 
+            [(ngModel)]="selectedType"
+            [name]="item.ctrlName" 
+            [id]="item.id" 
+            [value]="item.value"
+            [checked]="selectedType == item.value"
+            [disabled]="item.isDisabled"
+        />
+        <label [for]="item.id" class="card card-body bg-white gap-3 position-relative">
+            @if (selectedType() == item.value) {
+                <div class="check-mark">
+                    <i class="icon-check-circle"></i>
+                </div>
+            }
+            <div class="icon-container">
+                <i [ngClass]="item.icon"></i>
+            </div>
+            <h5 class="card-title mb-0">
+                {{ item.label }}
+            </h5>
+        </label>
+    </div>
+</ng-template>

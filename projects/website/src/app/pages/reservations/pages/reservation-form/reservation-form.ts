@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, effect, inject, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 import { ToastService } from '@ui/toast/toast.service';
 import { ConfirmationComponent } from '../../components/confirmation/confirmation.component';
 import { ContactInformationComponent } from '../../components/contact-information/contact-information.component';
@@ -38,7 +38,7 @@ export class ReservationForm implements AfterViewInit {
         });
     }
 
-    selectedField = signal<FieldModel | null>(null);
+    selectedField = signal<IFieldModel | null>(null);
     steps = signal<Stepper[]>([
         { component: FieldsComponent, label: 'Select Field', title: "Choose Your Field", active: true, completed: false },
         { component: DateAndTimeComponent, label: 'Select Date & Time', title: "Pick Date & Time", active: false, completed: false },

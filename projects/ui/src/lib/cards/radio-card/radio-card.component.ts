@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 
 @Component({
     selector: 'lib-radio-card',
@@ -11,5 +11,5 @@ export class RadioCardComponent {
     ctrlName = input.required<string>();
     id = input.required<any>();
     data = input.required<any>();
-    selectionChange = output<FieldModel>();
+    selectionChange = output<IFieldModel>();
 }

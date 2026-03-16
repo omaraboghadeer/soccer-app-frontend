@@ -1,0 +1,117 @@
+
+<ng-container [ngTemplateOutlet]="temp2"></ng-container>
+
+
+<ng-template #temp1>
+    <div class="row justify-content-center g-4">
+        <div class="col-lg-7">
+            <div class="d-flex gap-2 align-items-center mb-2">
+                <span class="logo-sm h3 mb-0">
+                    S8
+                </span>
+                <h3 class="fw-bold mb-0">Str8Kick</h3>
+            </div>
+
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Quaerat similique est asperiores molestiae nesciunt, modi soluta quidem eveniet omnis ea harum, 
+                doloribus in eaque tempore!
+            </p>
+        </div>
+        <div class="col-lg-4 col-12">
+            
+            <div class="card card-body bg-white shadow gap-4">
+                <ng-container [ngTemplateOutlet]="loginFormTemp"></ng-container>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #temp2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+
+            <h3 class="">
+                Welcome back
+            </h3>
+
+            <p class="text-muted ">
+                Login to access your account
+            </p>
+            <br>
+
+            <ng-container [ngTemplateOutlet]="loginFormTemp"></ng-container>
+            
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- FORM TEMPLATE -->
+<ng-template #loginFormTemp>
+    <form class="w-100" (submit)="onSubmit($event)">
+        <div class="form-group mb-4">
+            <label class="mb-2 fs-6">
+                <span class="text-danger fw-bold">*</span>
+                Mobile Number
+            </label>
+            <div class="input-group"
+                [class.is-invalid]="loginForm.mobile().invalid() && loginForm.mobile().touched()">
+                <span class="badge bg-primary-600 rounded-circle me-2" id="mobile">
+                    <i class="icon-phone text-white"></i>
+                </span>
+                <input type="tel" [formField]="loginForm.mobile" class="form-control" 
+                    placeholder="Enter your mobile number"
+                    aria-label="mobile" aria-describedby="mobile"
+                />
+            </div>
+            @if (loginForm.mobile().invalid() && loginForm.mobile().touched()) {
+                <div class="text-danger">
+                    @for (error of loginForm.mobile().errors(); track error.kind) {
+                        <small>{{ error.message }}</small>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="form-group mb-4">
+            <label class="mb-2 fs-6">
+                <span class="text-danger fw-bold">*</span>
+                Password
+            </label>
+            <div class="input-group"
+                [class.is-invalid]="loginForm.password().invalid() && loginForm.password().touched()">
+                <span class="badge bg-primary-600 rounded-circle me-2" id="password">
+                    <i class="icon-locked text-white"></i>
+                </span>
+                <input #passwordInput type="password" [formField]="loginForm.password" class="form-control" 
+                    placeholder="Enter your password number"
+                    aria-label="password" aria-describedby="password"
+                />
+                <button type="button" class="btn py-1" (click)="showPassword(passwordInput)">
+                    <i class=" text-primary" 
+                        [ngClass]=" passwordInput.type == 'text' ? 'icon-open-eye' : 'icon-close-eye'">
+                    </i>
+                </button>
+            </div>
+            @if (loginForm.password().invalid() && loginForm.password().touched()) {
+                <div class="text-danger">
+                    @for (error of loginForm.password().errors(); track error.kind) {
+                        <small>{{ error.message }}</small>
+                    }
+                </div>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Submit
+        </button>
+
+        <div class="text-center mt-3">
+            <p class="fs-8">
+                Don't have account? <a role="button" routerLink="/auth/register">Join</a>
+            </p>
+        </div>
+    </form>
+</ng-template>

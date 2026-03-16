@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
-import { FieldModel } from "./field.model";
+import { IFieldModel } from "./field.model";
 
 export interface FieldRepository {
-    getAllFields(): Observable<FieldModel[]>;
-    getFieldsByGovernorate(govId: string): Observable<FieldModel[]>;
-    getFieldsByCity(cityId: string): Observable<FieldModel[]>;
+    getAllFields(): Observable<IFieldModel[]>;
+    getFieldsByGovernorate(govId: string): Observable<IFieldModel[]>;
+    getFieldsByCity(cityId: string): Observable<IFieldModel[]>;
 }

@@ -6,7 +6,7 @@ import { FieldService } from '@data-access/field/field.service';
 import { CityModel } from '@domain/city/city.model';
 import { Governorate } from '@domain/governorate/governorate.model';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 
 @Component({
     selector: 'app-quick-reservation-form',
@@ -22,7 +22,7 @@ export class QuickReservationForm implements OnInit {
 
     governorates = toSignal(this._governoratesService.getGovernorates(), { initialValue: [] });
     cities = signal<CityModel[]>([]);
-    fields = signal<FieldModel[]>([]);
+    fields = signal<IFieldModel[]>([]);
     fieldsType = signal<string[]>(['5 VS 5', '7 VS 7', '11 VS 11']);
 
     onSelectGovernorate(val: Governorate) {

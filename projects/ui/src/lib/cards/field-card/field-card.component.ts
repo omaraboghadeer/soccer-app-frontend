@@ -78,7 +78,7 @@ const _FIELD = {
         "5v5",
         "7v7"
     ],
-    "hourlyPrice": 100,
+    "price": 100,
     "workingStartHour": 16,
     "workingEndHour": 4,
     "ownerId": "aboghadeer"

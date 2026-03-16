@@ -1,6 +1,6 @@
 export type FieldSize = "5v5" | "7v7" | "12v12";
 
-export type Address = {
+export type TFieldAddress = {
     governorate: {
         id: string,
         name_ar: string,
@@ -13,20 +13,24 @@ export type Address = {
         id: string
     },
     coordinates: {
-        lat: string | null,
-        long: string | null
+        lat: number | string,
+        lng: number | string
     }
 }
 
-export interface FieldModel {
+export type TWorkingTime = {
+    start: string;
+    end: string;
+}
+
+export interface IFieldModel {
     id: string,
     name: string,
     phone: string,
-    address: Address,
+    workingTime: TWorkingTime;
+    address: TFieldAddress,
     supportedSizes: string[],
-    hourlyPrice: number, // 100 EGP
-    workingStartHour: number,  // 4:00 PM => 16
-    workingEndHour: number,    // 4:00 AM => 4
-    ownerId: string | null,
-    images?: string[],
+    price: number, // 100 EGP
+    images: string[],
+    owner?: string | null,
 }

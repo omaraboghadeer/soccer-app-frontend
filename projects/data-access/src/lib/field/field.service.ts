@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 import { FieldRepository } from '@domain/field/field.repository';
 import { Observable, of } from 'rxjs';
 import { ApiService } from '../../public-api';
@@ -10,16 +10,30 @@ import * as FIELDS from '../data/static/fields.json';
 })
 export class FieldService extends ApiService implements FieldRepository {
 
-    getAllFields(): Observable<FieldModel[]> {
-        return of(FIELDS.data);
+    getAllFields(): Observable<IFieldModel[]> {
+        return of(FIELDS.data.map(mappingFieldDto));
     }
 
-    getFieldsByGovernorate(govId: string): Observable<FieldModel[]> {
-        return of(FIELDS.data.filter(field => field.address.governorate.id === govId));
+    getFieldsByGovernorate(govId: string): Observable<IFieldModel[]> {
+        return of(FIELDS.data.filter(field => field.address.governorate.id === govId).map(mappingFieldDto));
     }
 
-    getFieldsByCity(cityId: string): Observable<FieldModel[]> {
-        return of(FIELDS.data.filter(field => field.address.city.id === cityId));
+    getFieldsByCity(cityId: string): Observable<IFieldModel[]> {
+        return of(FIELDS.data.filter(field => field.address.city.id === cityId).map(mappingFieldDto));
     }
 
+}
+
+function mappingFieldDto(field: any): IFieldModel {
+    return {
+        id: field.id,
+        name: field.name,
+        phone: field.phone,
+        price: field.price,
+        supportedSizes: field.supportedSizes,
+        images: [],
+        workingTime: field.workingTime,
+        address: field.address,
+        owner: field.owner
+    }
 }

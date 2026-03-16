@@ -9,3 +9,5 @@ export * from './lib/cards/skeleton-card/skeleton-card';
 export * from './lib/carousel/carousel';
 export * from './lib/toast/toast.component';
 export * from './lib/toast/toast.service';
+export * from './lib/otp/otp.component';
+export * from './lib/modal/modal.component';

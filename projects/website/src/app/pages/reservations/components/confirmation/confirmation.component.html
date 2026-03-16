@@ -74,14 +74,14 @@
 <div class="card bg-white shadow overflow-auto">
     <div class="card-header d-flex justify-content-between bg-white">
         <h5 class="card-title mb-0">Total reservation price</h5>
-        <h5>{{_reservationState.selectedSlots().length * _reservationState.selectedField()!.hourlyPrice}} EGP</h5>
+        <h5>{{_reservationState.selectedSlots().length * _reservationState.selectedField()!.price}} EGP</h5>
     </div>
 
     <div class="card-header d-flex justify-content-between bg-white">
         <h5 class="card-title mb-0">Down payment is 25%</h5>
         <h5>
             {{
-                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.hourlyPrice) * 0.25
+                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.price) * 0.25
             }} EGP
         </h5>
     </div>
@@ -90,7 +90,7 @@
         <h5 class="card-title mb-0">Amount Paid</h5>
         <h5>
             {{
-                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.hourlyPrice) * 0.25
+                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.price) * 0.25
             }} EGP
         </h5>
     </div>

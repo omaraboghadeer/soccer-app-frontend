@@ -1,12 +1,12 @@
 import { Injectable, signal } from '@angular/core';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ReservationFromState {
 
-    selectedField = signal<FieldModel | null>(null);
+    selectedField = signal<IFieldModel | null>(null);
     selectedDate = signal<Date | null>(null);
     selectedTime = signal<string | null>(null);
     selectedSlots = signal<string[]>([]);

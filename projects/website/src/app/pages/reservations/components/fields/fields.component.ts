@@ -4,7 +4,7 @@ import { CityService } from '@data-access/city/city.service';
 import { FieldService } from '@data-access/field/field.service';
 import { GovernorateService } from '@data-access/governorate/governorate.service';
 import { CityModel } from '@domain/city/city.model';
-import { FieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain/field/field.model';
 import { Governorate } from '@domain/governorate/governorate.model';
 import { RadioCardComponent } from '@ui/cards/radio-card/radio-card.component';
 import { NgSelectComponent } from '@ng-select/ng-select';
@@ -25,7 +25,7 @@ export class FieldsComponent implements OnInit {
     governorates = toSignal(this._governoratesService.getGovernorates(), { initialValue: [] });
     cities = signal<CityModel[]>([]);
     fieldsType = signal<string[]>(['5 VS 5', '7 VS 7', '11 VS 11']);
-    fields = signal<FieldModel[]>([]);
+    fields = signal<IFieldModel[]>([]);
     
     page = signal(1);
     pageSize = signal(6);

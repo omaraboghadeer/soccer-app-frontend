@@ -1,0 +1,230 @@
+<h3>
+    Join Str8Kick
+</h3>
+<p class="text-muted ">
+    Enter your details below to create your account and get started
+</p>
+
+<div class="row mt-3">
+    @for (type of signupTypes(); track type.id) {
+        <div class="col-lg-2">
+            <ng-container 
+                [ngTemplateOutlet]="radioCardTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    ctrlName: 'signuptype',
+                    id: type.id,
+                    icon: type.icon,
+                    label: type.label,
+                    selected: type.selected,
+                    isDisabled: (currentStep() == 2)
+                } }"
+            ></ng-container>
+        </div>
+    }
+</div>
+
+
+@switch (currentStep()) {
+    @case (1) {
+        <div class="panel mt-4" [ngClass]="{'open' : currentStep() == 1}">
+            <form class="w-100" (submit)="onSubmit($event)">
+        
+                <div class="row g-3 ">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="mb-2 fs-6">
+                                <span class="text-danger fw-bold">*</span>
+                                First name
+                            </label>
+                            <div class="input-group"
+                                [class.is-invalid]="signupForm.fname().invalid() && signupForm.fname().touched()">
+                                <span class="badge bg-primary-600 rounded-circle me-2" id="fname">
+                                    <i class="icon-player text-white"></i>
+                                </span>
+                                <input type="text" [formField]="signupForm.fname" class="form-control" 
+                                    placeholder="Enter your first name"
+                                    aria-label="fname" aria-describedby="fname"
+                                />
+                            </div>
+                            @if (signupForm.fname().invalid() && signupForm.fname().touched()) {
+                                <div class="text-danger">
+                                    @for (error of signupForm.fname().errors(); track error.kind) {
+                                        <small>{{ error.message }}</small>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+        
+                    <div class="col-md-6 col-12">
+                        <ng-container 
+                            [ngTemplateOutlet]="formGroupTemp"
+                            [ngTemplateOutletContext]="{ $implicit: {
+                                label: 'Family name',
+                                id: 'lname',
+                                type: 'text',
+                                icon: 'icon-player',
+                                ctrlName: signupForm.lname,
+                                isRequired: true,
+                                placeholder: 'Enter your family name',
+                                errors: signupForm.lname().errors(),
+                                isInvalid: (signupForm.lname().invalid() && signupForm.lname().touched()),
+                            } }"
+                        ></ng-container>
+                    </div>
+        
+                    <div class="col-md-6 col-12">
+                        <ng-container 
+                            [ngTemplateOutlet]="formGroupTemp"
+                            [ngTemplateOutletContext]="{ $implicit: {
+                                label: 'Mobile number',
+                                id: 'phone',
+                                type: 'tel',
+                                icon: 'icon-phone',
+                                ctrlName: signupForm.phone,
+                                isRequired: true,
+                                placeholder: 'Enter your mobile number',
+                                errors: signupForm.phone().errors(),
+                                isInvalid: (signupForm.phone().invalid() && signupForm.phone().touched()),
+                            } }"
+                        ></ng-container>
+                    </div>
+        
+                   <div class="col-md-6 col-12">
+                        <ng-container 
+                            [ngTemplateOutlet]="formGroupTemp"
+                            [ngTemplateOutletContext]="{ $implicit: {
+                                label: 'Date of birth',
+                                id: 'birthdate',
+                                type: 'date',
+                                icon: 'icon-calendar',
+                                ctrlName: signupForm.birthdate,
+                                isRequired: true,
+                                placeholder: 'DD/MM/YYYY',
+                                errors: signupForm.birthdate().errors(),
+                                isInvalid: (signupForm.birthdate().invalid() && signupForm.birthdate().touched()),
+                            } }"
+                        ></ng-container>
+                    </div>
+        
+                    <div class="col-md-6 col-12">
+                        <ng-container 
+                            [ngTemplateOutlet]="formGroupTemp"
+                            [ngTemplateOutletContext]="{ $implicit: {
+                                label: 'Password',
+                                id: 'password',
+                                type: 'password',
+                                icon: 'icon-locked',
+                                ctrlName: signupForm.password,
+                                isRequired: true,
+                                placeholder: 'Enter your password',
+                                errors: signupForm.password().errors(),
+                                isInvalid: (signupForm.password().invalid() && signupForm.password().touched()),
+                            } }"
+                        ></ng-container>
+                    </div>
+        
+                    <div class="col-md-6 col-12">
+                        <ng-container 
+                            [ngTemplateOutlet]="formGroupTemp"
+                            [ngTemplateOutletContext]="{ $implicit: {
+                                label: 'Confirm password',
+                                id: 'confirmPassword',
+                                type: 'password',
+                                icon: 'icon-locked',
+                                ctrlName: signupForm.confirmPassword,
+                                isRequired: true,
+                                placeholder: 'Enter your confirm password',
+                                errors: signupForm.confirmPassword().errors(),
+                                isInvalid: (signupForm.confirmPassword().invalid() && signupForm.confirmPassword().touched()),
+                            } }"
+                        ></ng-container>
+                    </div>
+        
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary">
+                            Continue
+                        </button>
+                    </div>
+                    <div class="col-12 text-center">
+                        <p class="fs-8">
+                            Already have an account? <a role="button" routerLink="/auth/login">Login</a>
+                        </p>
+                    </div>
+                </div>
+        
+            </form>
+        </div>
+    }
+
+    @case (2) {
+        <div class="panel mt-4" [ngClass]="{'open' : currentStep() == 2}">
+            <lib-otp
+                [duration]="60"
+                [title]="'Mobile verification'"
+                [subtitle]="'Introduce the 4-digits verification code sent to +966 565 847484'"
+                (onClickBack)="currentStep.set(1)"
+            />
+        </div>
+    }
+}
+
+
+<ng-template #radioCardTemp let-item>
+    <div class="radio-card">
+        <input type="radio" class="d-none" 
+            [name]="item.ctrlName" 
+            [id]="item.id" 
+            [checked]="item.selected"
+            [disabled]="item.isDisabled"
+        />
+        <label [for]="item.id" class="card card-body bg-white gap-3 position-relative">
+            @if (item.selected) {
+                <div class="check-mark">
+                    <i class="icon-check-square"></i>
+                </div>
+            }
+            <div class="icon-container">
+                <i [ngClass]="item.icon"></i>
+            </div>
+            <h5 class="card-title mb-0">
+                {{ item.label }}
+            </h5>
+        </label>
+    </div>
+</ng-template>
+
+<ng-template #formGroupTemp let-item>
+    <div class="form-group">
+        <label class="mb-2 fs-6">
+            @if (item.isRequired) {
+                <span class="text-danger fw-bold">*</span>
+            }
+            {{item.label}}
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="item.isInvalid">
+            <span class="badge bg-primary-600 rounded-circle me-2" [id]="item.id">
+                <i class="text-white" [ngClass]="item.icon"></i>
+            </span>
+            <input #inputEle [type]="item.type" [formField]="item.ctrlName" 
+                class="form-control" [placeholder]="item.placeholder" 
+                [attr.aria-label]="item.id" [attr.aria-describedby]="item.id"
+            />
+            @if (item.type === 'password') {
+                <button type="button" class="btn py-1" (click)="showPassword(inputEle)">
+                    <i class="text-primary" 
+                        [ngClass]="inputEle.type == 'text' ? 'icon-open-eye' : 'icon-close-eye'">
+                    </i>
+                </button>
+            }
+        </div>
+        @if (item.isInvalid) {
+            <div class="text-danger">
+                @for (error of item.errors; track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+</ng-template>
