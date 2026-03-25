@@ -23,6 +23,10 @@ import { ReservationFromState } from '../../state/reservation-from.state';
                 border-width: 2px !important;;
             }
         }
+
+        @media screen and (max-width: 650px) {
+            .w-50 { width: 100% !important; }
+        }
     `
 })
 export class DateAndTimeComponent implements OnInit {

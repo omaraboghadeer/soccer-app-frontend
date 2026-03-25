@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, effect, inject, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, effect, inject, PLATFORM_ID, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
 import { IFieldModel } from '@domain/field/field.model';
 import { ToastService } from '@ui/toast/toast.service';
 import { ConfirmationComponent } from '../../components/confirmation/confirmation.component';
@@ -7,6 +7,7 @@ import { DateAndTimeComponent } from '../../components/date-and-time/date-and-ti
 import { FieldsComponent } from '../../components/fields/fields.component';
 import { ReservationFromState } from '../../state/reservation-from.state';
 import { RouterLink } from "@angular/router";
+import { isPlatformBrowser, NgTemplateOutlet } from '@angular/common';
 
 interface Stepper {
     component: Type<any>;
@@ -18,18 +19,31 @@ interface Stepper {
 
 @Component({
     selector: 'app-reservation-form',
-    imports: [RouterLink],
+    imports: [RouterLink, NgTemplateOutlet],
     templateUrl: './reservation-form.html',
     styleUrl: './reservation-form.scss',
     providers: [ ReservationFromState ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReservationForm implements AfterViewInit {
+    private readonly _platformId = inject(PLATFORM_ID);
     private readonly _reservationState = inject(ReservationFromState);
     private readonly _toastSevice = inject(ToastService);
     readonly container = viewChild.required('stepperContentContainer', { read: ViewContainerRef });
+    desktopView = signal(true);
+    screenResizeObs: any;
 
     constructor() {
+        if (!isPlatformBrowser(this._platformId)) return;
+
+        this.screenResizeObs = new ResizeObserver(entries => {
+            entries.forEach(entry => {
+                const width = Math.floor(entry.contentRect.width);
+                this.desktopView.set(width >= 992);
+            });
+        });
+        this.screenResizeObs.observe(document.body);
+
         effect(() => {
             const index = this.currentStepIndex();
             if (this.container()) {
