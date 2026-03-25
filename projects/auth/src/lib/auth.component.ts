@@ -40,7 +40,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
         </header>
 
         <main class="d-flex justify-content-center align-items-center bg-white">
-            <div class="container">
+            <div class="container pb-5">
                 <router-outlet/>
             </div>
         </main>

@@ -10,20 +10,15 @@
 <div class="row mt-5">
     <!-- Steps -->
     <div class="col-lg-3">
-        <div class="vertical-step-container">
-            <ul class="stepper-steps">
-                @for (step of steps(); track $index) {
-                    <li class="stepper-step" 
-                        [class.active]="step.active" 
-                        [class.completed]="step.completed">
-                        <div class="step-icon">
-                            <div class="step-number">{{ $index + 1 }}</div>
-                        </div>
-                        <p class="step-label">{{ step.label }}</p>
-                    </li>
-                }
-            </ul>
-        </div>
+        @if (desktopView()) {
+            <ng-container 
+                [ngTemplateOutlet]="verticalStep"
+            ></ng-container>
+        } @else {
+            <ng-container 
+                [ngTemplateOutlet]="horizontalStep"   
+            ></ng-container>
+        }
     </div>
 
     <!-- Content -->
@@ -39,7 +34,7 @@
                         </span> 
                         <a role="button" routerLink="/auth/login">Login</a>
                     </p>
-                    <div class="d-flex gap-3 mt-4">
+                    <div class="d-flex flex-wrap gap-3 mt-4">
                         @for (type of signupTypes(); track type.id) {
                             <ng-container 
                                 [ngTemplateOutlet]="radioCardTemp"
@@ -97,6 +92,44 @@
     </div>
 </div>
 
+<ng-template #verticalStep>
+    <div class="vertical-step-container">
+        <ul class="stepper-steps">
+            @for (step of steps(); track $index) {
+                <li class="stepper-step" 
+                    [class.active]="step.active" 
+                    [class.completed]="step.completed">
+                    <div class="step-icon">
+                        <div class="step-number">{{ $index + 1 }}</div>
+                    </div>
+                    <p class="step-label">{{ step.label }}</p>
+                </li>
+            }
+        </ul>
+    </div>
+</ng-template>
+<ng-template #horizontalStep>
+    <div class="horizontal-step-container">
+        <ul class="stepper-steps">
+            @for (step of steps(); track $index) {
+                <li class="stepper-step"
+                    [class.active]="step.active"
+                    [class.completed]="step.completed" >
+                    <div class="step-icon"
+                        [style.--step]="currentStepIndex() + 1" [style.--total]="steps().length">
+                        <div class="step-number fs-8">
+                            <span>{{$index + 1}} of {{steps().length}}</span>
+                        </div>
+                    </div>
+                    <div class="step-labels">
+                        <p class="step-label">{{ step.label }}</p>
+                        <p class="text-muted small"> {{ steps()[currentStepIndex() + 1].label}} </p>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</ng-template>
 
 <ng-template #radioCardTemp let-item>
     <div class="radio-card">

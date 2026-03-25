@@ -32,10 +32,7 @@ export interface IFieldFormData {
             name_en: string,
             id: string
         },
-        coordinates: {
-            lat: number | string,
-            lng: number | string
-        }
+        coordinates: google.maps.LatLngLiteral
     }
 }
 

@@ -1,12 +1,12 @@
-import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, viewChild } from '@angular/core';
+import { isPlatformBrowser, NgClass, NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, inject, PLATFORM_ID, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RegistrationService } from '@auth/state/registration.service';
 import { OtpComponent } from '@ui/otp/otp.component';
 import { ToastService } from '@ui/toast/toast.service';
-import { NormalUserFormComponent } from './components/normal-user-form/normal-user-form.component';
 import { FieldFormComponent } from "./components/field-form/field-form.component";
+import { NormalUserFormComponent } from './components/normal-user-form/normal-user-form.component';
 
 interface IStepper {
     step: number;
@@ -39,8 +39,22 @@ type TSignUpType = {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPage {
+    private readonly _platformId = inject(PLATFORM_ID);
+    desktopView = signal(true);
+    screenResizeObs: any;
+
     
     constructor() {
+        if (!isPlatformBrowser(this._platformId)) return;
+
+        this.screenResizeObs = new ResizeObserver(entries => {
+            entries.forEach(entry => {
+                const width = Math.floor(entry.contentRect.width);
+                this.desktopView.set(width >= 992);
+            });
+        });
+        this.screenResizeObs.observe(document.body);
+        
         effect(() => {
             if (this.selectedType() == 'fieldOwner') {
                 this.steps.update((v) => {
@@ -59,7 +73,7 @@ export class RegisterPage {
             } else {
                 this.steps.set([...this.originalStepsModel()]);
             }
-        })
+        });
     }
 
     signupTypes = signal<TSignUpType[]>([

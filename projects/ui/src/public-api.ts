@@ -11,3 +11,4 @@ export * from './lib/toast/toast.component';
 export * from './lib/toast/toast.service';
 export * from './lib/otp/otp.component';
 export * from './lib/modal/modal.component';
+export * from './lib/map/map.component';

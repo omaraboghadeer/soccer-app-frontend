@@ -1,18 +1,25 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, NgModuleRef, signal, TemplateRef, WritableSignal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { IFieldFormData, RegistrationService } from '@auth/state/registration.service';
-import { NgSelectComponent } from '@ng-select/ng-select';
 import { CityService } from '@data-access/city/city.service';
 import { GovernorateService } from '@data-access/governorate/governorate.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { CityModel } from '@domain/city/city.model';
 import { Governorate } from '@domain/governorate/governorate.model';
-import { ModalComponent } from '@ui/modal/modal.component';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { MapComponent } from '@ui/map/map.component';
 
 @Component({
     selector: 'lib-field-form',
-    imports: [FormField, NgTemplateOutlet, NgClass, NgSelectComponent, ModalComponent],
+    imports: [
+        FormField, 
+        NgTemplateOutlet, 
+        NgClass, 
+        NgSelectComponent,
+        MapComponent
+    ],
     templateUrl: './field-form.component.html',
     styles: `
         fieldset {
@@ -45,6 +52,7 @@ export class FieldFormComponent {
     protected readonly _governoratesService = inject(GovernorateService);
     protected readonly _citiesService = inject(CityService);
     protected readonly _registrationService = inject(RegistrationService);
+    protected readonly _modalService = inject(NgbModal);
 
     governorates = toSignal(this._governoratesService.getGovernorates(), { initialValue: [] });
     cities = signal<CityModel[]>([]);
@@ -55,7 +63,51 @@ export class FieldFormComponent {
         });
     }
 
-    coordinatesValue = signal<string>('Open map'); 
+    coordinatesValue = signal<google.maps.LatLngLiteral>({lat: 0, lng: 0});
+    closeResult: WritableSignal<string> = signal('');
+    private mapModalRef!: NgbModalRef;
+    openMap(ctx: TemplateRef<any>) {
+        
+        this.mapModalRef = this._modalService.open(ctx, {
+            size: 'lg',
+            centered: true,
+            keyboard: false,
+            backdrop: 'static',
+            ariaLabelledBy: 'modal-basic-title'
+        });
+
+        // modalRef.componentInstance.id = 'mapModal';
+        // modalRef.componentInstance.title = 'Map';
+
+        this.mapModalRef.result.then(
+            res => this.closeResult.set(`Closed with: ${res}`),
+            reason =>  this.closeResult.set(`Dismissed ${this.getDismissReason(reason)}`)
+        )
+    }
+
+    closeMapModal() {
+        if (typeof this.coordinatesValue() == 'string')
+            return
+
+        this.fieldForm.address.coordinates().value.set(this.coordinatesValue());
+        this.mapModalRef.close('Close click')
+    }
+
+    onLocationChanges(ev: google.maps.LatLngLiteral) {
+        console.log("🚀 ~ FieldFormComponent ~ onLocationChanges ~ ev:", ev)
+        this.coordinatesValue.set(ev);
+    }
+
+    private getDismissReason(reason: any): string {
+		switch (reason) {
+			case ModalDismissReasons.ESC:
+				return 'by pressing ESC';
+			case ModalDismissReasons.BACKDROP_CLICK:
+				return 'by clicking on a backdrop';
+			default:
+				return `with: ${reason}`;
+		}
+	}
 
     fieldSizes = signal([
         {
@@ -119,8 +171,8 @@ export class FieldFormComponent {
         images: [''],
         price: 100,
         workingTime: {
-            start: '',
-            end: ''
+            start: '15:00',
+            end: '00:00'
         },
         supportedSizes: [''],
         address: {
@@ -136,8 +188,8 @@ export class FieldFormComponent {
                 name_en: ''
             },
             coordinates: {
-                lat: '',
-                lng: ''
+                lat: 0,
+                lng: 0
             }
         }
     });
@@ -155,6 +207,7 @@ export class FieldFormComponent {
     async onSubmit(event?: Event) {
         event?.preventDefault();
         this.fieldForm().markAsTouched();
+        console.log("🚀 ~ onSubmit ~:", this.fieldForm().value())
 
         // Reset the value
         this._registrationService.reset();

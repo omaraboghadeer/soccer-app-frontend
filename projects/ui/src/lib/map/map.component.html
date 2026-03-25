@@ -1,0 +1,24 @@
+<button class="btn btn-outline-primary mb-2" (click)="getCurrentLocation()">
+    Use Current Location
+</button>
+
+@if (false) {
+    <!-- Google Map -->
+    <google-map 
+        height="400px" 
+        width="100%" 
+        [center]="center" 
+        [zoom]="zoom" 
+        (mapClick)="onMapClick($event)">
+    
+        <!-- Marker -->
+        @if (lat() && lng()) {
+            <map-marker 
+                [position]="{ lat: lat()!, lng: lng()! }" 
+                [options]="{ draggable: false }">
+            </map-marker>
+        }
+    </google-map>
+}
+
+<div #mapEle id="map" style="height: 400px; width: 100%;"></div>

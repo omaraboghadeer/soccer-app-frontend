@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 1rem 0;
     width: 100%;
     height: 1px;
-    background-image: linear-gradient( to right, transparent, #ccc, transparent);
+    background-image: linear-gradient(to right, transparent, #ccc, transparent);
 }
 
 .input-group {
@@ -72,20 +72,23 @@ h1, h2, h3, h4, h5, h6, p {
             color: var(--pci-red-500);
         }
     }
-    
+
     .badge {
         height: 30px;
         width: 30px;
         display: grid;
         align-content: center;
     }
-    input, select {
+
+    input,
+    select {
         border: none;
         background-color: transparent;
         // flex: 1;
         padding: 0;
 
-        &:focus, &:focus-visible {
+        &:focus,
+        &:focus-visible {
             outline: none;
         }
     }
@@ -101,10 +104,10 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .card-glass {
-    background: rgba(255, 255, 255, 0.15); 
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 1rem;
-    backdrop-filter: blur(5px); 
-    -webkit-backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     padding: 1rem;
 }
 
@@ -189,3 +192,60 @@ h1, h2, h3, h4, h5, h6, p {
     }
 }
 
+.horizontal-step-container {
+    margin-bottom: 1rem;
+
+    .stepper-step {
+        display: none;
+        
+        &.active:not(.completed) {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-icon {
+            --size: 70px;
+            --track: #e6e7e9;
+            --progress: #1f7a4c;
+
+            height: var(--size);
+            width: var(--size);
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            position: relative;
+
+            .step-number {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                position: relative;
+                /* Progress calculation (1 / 4 = 25%) */
+                background: conic-gradient(
+                    var(--progress) calc((var(--step) / var(--total)) * 360deg),
+                    var(--track) 0deg
+                );
+
+                transition: background 0.4s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 85%;
+                    height: 85%;
+                    background: #fff;
+                    border-radius: 50%;
+                }
+
+                span {
+                    position: relative;
+                }
+            }
+
+        }
+    }
+}
