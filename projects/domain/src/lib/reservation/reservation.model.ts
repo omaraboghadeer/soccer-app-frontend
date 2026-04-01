@@ -1,4 +1,4 @@
-import { IFieldModel, FieldSize } from "@domain/field/field.model";
+import { IFieldModel, FieldSize } from "@domain";
 
 export interface Reservation {
     id?: string;

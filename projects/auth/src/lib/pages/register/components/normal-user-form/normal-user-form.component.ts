@@ -1,7 +1,7 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
-import { IRegisterFormData, RegistrationService } from '@auth/state/registration.service';
+import { IRegisterFormData, RegistrationService } from '../../../../state/registration.service';
 
 @Component({
     selector: 'lib-normal-user-form',
@@ -14,12 +14,12 @@ export class NormalUserFormComponent {
     protected readonly _registrationService = inject(RegistrationService);
 
     private registerModel = signal<IRegisterFormData>({
-        fname: 'omar',
-        lname: 'khalifa',
-        phone: '0565847484',
-        password: '123',
-        confirmPassword: '123',
-        birthdate: new Date(1994, 10, 18, 5),
+        fname: '',
+        lname: '',
+        phone: '',
+        password: '',
+        confirmPassword: '',
+        birthdate: new Date(),
         role: "normal"
     });
 

@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { IFieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain';
 
 @Component({
     selector: 'lib-radio-card',

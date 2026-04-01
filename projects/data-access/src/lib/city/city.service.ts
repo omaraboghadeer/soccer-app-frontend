@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../public-api';
-import { CityRepository } from '@domain/city/city.repository';
-import { CityModel } from '@domain/city/city.model';
+import { CityRepository } from '@domain';
+import { CityModel } from '@domain';
 import { Observable, of } from 'rxjs';
 import * as CITIES from '../data/static/eg_cities.json';
 

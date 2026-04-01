@@ -1,12 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CityService } from '@data-access/city/city.service';
-import { GovernorateService } from '@data-access/governorate/governorate.service';
-import { FieldService } from '@data-access/field/field.service';
-import { CityModel } from '@domain/city/city.model';
-import { Governorate } from '@domain/governorate/governorate.model';
+import { FieldService, CityService, GovernorateService } from '@data-access';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { IFieldModel } from '@domain/field/field.model';
+import { IFieldModel, CityModel, Governorate } from '@domain';
 
 @Component({
     selector: 'app-quick-reservation-form',

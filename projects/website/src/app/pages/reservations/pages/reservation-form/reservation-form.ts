@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, effect, inject, PLATFORM_ID, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
-import { IFieldModel } from '@domain/field/field.model';
-import { ToastService } from '@ui/toast/toast.service';
+import { IFieldModel } from '@domain';
+import { ToastService } from '@ui';
 import { ConfirmationComponent } from '../../components/confirmation/confirmation.component';
 import { ContactInformationComponent } from '../../components/contact-information/contact-information.component';
 import { DateAndTimeComponent } from '../../components/date-and-time/date-and-time.component';

@@ -1,15 +1,13 @@
 import { NgClass, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, NgModuleRef, signal, TemplateRef, WritableSignal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, TemplateRef, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { form, FormField, required, submit } from '@angular/forms/signals';
-import { IFieldFormData, RegistrationService } from '@auth/state/registration.service';
-import { CityService } from '@data-access/city/city.service';
-import { GovernorateService } from '@data-access/governorate/governorate.service';
-import { CityModel } from '@domain/city/city.model';
-import { Governorate } from '@domain/governorate/governorate.model';
+import { CityService, GovernorateService } from '@data-access';
+import { CityModel, Governorate } from '@domain';
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal';
 import { NgSelectComponent } from '@ng-select/ng-select';
-import { MapComponent } from '@ui/map/map.component';
+import { MapComponent } from '@ui';
+import { IFieldFormData, RegistrationService } from '../../../../state/registration.service';
 
 @Component({
     selector: 'lib-field-form',

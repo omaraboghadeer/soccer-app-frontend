@@ -5,6 +5,7 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/lib",
         "baseUrl": "../../",
+        "rootDir": "../..",
         "declaration": true,
         "declarationMap": true,
         "types": []

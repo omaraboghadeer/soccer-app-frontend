@@ -2,9 +2,9 @@ import { isPlatformBrowser, NgClass, NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, effect, inject, PLATFORM_ID, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { RegistrationService } from '@auth/state/registration.service';
-import { OtpComponent } from '@ui/otp/otp.component';
-import { ToastService } from '@ui/toast/toast.service';
+import { RegistrationService } from '../../state/registration.service';
+import { OtpComponent } from '@ui';
+import { ToastService } from '@ui';
 import { FieldFormComponent } from "./components/field-form/field-form.component";
 import { NormalUserFormComponent } from './components/normal-user-form/normal-user-form.component';
 

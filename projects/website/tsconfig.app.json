@@ -4,7 +4,13 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../out-tsc/app",
-        "rootDir": "src",
+        "rootDirs": [
+            "./src", 
+            "../../projects/domain/src", 
+            "../../projects/data-access/src", 
+            "../../projects/ui/src", 
+            "../../projects/auth/src"
+        ],
         "types": ["node"]
     },
     "include": ["src/**/*.ts"],

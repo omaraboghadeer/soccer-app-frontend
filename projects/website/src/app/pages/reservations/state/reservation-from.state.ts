@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IFieldModel } from '@domain/field/field.model';
+import { IFieldModel } from '@domain';
 
 @Injectable({
     providedIn: 'root',

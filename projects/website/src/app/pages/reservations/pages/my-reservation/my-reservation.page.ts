@@ -2,10 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
-import { ReservationApiService } from '@data-access/reservation/reservation.api';
-import { Reservation } from '@domain/reservation/reservation.model';
-import { FieldCardComponent } from '@ui/cards/field-card/field-card.component';
-import { ToastService } from '@ui/toast/toast.service';
+import { ReservationApiService } from '@data-access';
+import { Reservation } from '@domain';
+import { FieldCardComponent, ToastService } from '@ui';
+
 
 @Component({
     selector: 'app-my-reservation',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Reservation } from '@domain/reservation/reservation.model';
-import { ReservationRepository } from '@domain/reservation/reservation.repository';
+import { Reservation } from '@domain';
+import { ReservationRepository } from '@domain';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../public-api';
 

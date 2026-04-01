@@ -14,18 +14,23 @@
         "importHelpers": true,
         "target": "ES2022",
         "module": "preserve",
+        "baseUrl": "./",
         "paths": {
-            "@ui/*": [
-                "projects/ui/src/lib/*"
+            "@ui": [
+                "projects/ui/src/public-api.ts",
+                "dist/ui"
             ],
-            "@domain/*": [
-                "projects/domain/src/lib/*"
+            "@domain": [
+                "projects/domain/src/public-api.ts",
+                "dist/domain/types/domain.d.ts"
             ],
-            "@data-access/*": [
-                "projects/data-access/src/lib/*"
+            "@data-access": [
+                "projects/data-access/src/public-api.ts",
+                "dist/data-access"
             ],
             "@auth/*": [
-                "projects/auth/src/lib/*"
+                "projects/auth/src/public-api.ts",
+                "dist/auth"
             ]
         }
     },

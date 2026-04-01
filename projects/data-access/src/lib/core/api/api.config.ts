@@ -1,4 +1,4 @@
 import { InjectionToken } from "@angular/core";
-import { Environment } from "@domain/environment/environment.model";
+import { IEnvironment } from "@domain";
 
-export const API_CONFIG = new InjectionToken<Environment>('API_CONFIG');
+export const API_CONFIG = new InjectionToken<IEnvironment>('API_CONFIG');

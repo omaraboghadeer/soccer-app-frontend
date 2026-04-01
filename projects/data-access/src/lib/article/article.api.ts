@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "../../public-api";
 
-import { ArticleDto  } from '@domain/article/article.dto';
 import { map } from "rxjs";
 import { mapArticle } from "./article.mapper";
+import { ArticleDto } from "@domain";
 
 @Injectable({ providedIn: 'root' })
 export class ArticleApi extends ApiService{

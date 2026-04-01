@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Governorate } from '@domain/governorate/governorate.model';
-import { GovernorateRepository } from '@domain/governorate/governorate.repository';
+import { Governorate } from '@domain';
+import { GovernorateRepository } from '@domain';
 import { Observable, of } from 'rxjs';
 import { ApiService } from '../../public-api';
 import * as Govs from '../data/static/eg_governorates.json';

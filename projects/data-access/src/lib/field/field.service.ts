@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IFieldModel } from '@domain/field/field.model';
-import { FieldRepository } from '@domain/field/field.repository';
+import { IFieldModel } from '@domain';
+import { FieldRepository } from '@domain';
 import { Observable, of } from 'rxjs';
 import { ApiService } from '../../public-api';
 import * as FIELDS from '../data/static/fields.json';

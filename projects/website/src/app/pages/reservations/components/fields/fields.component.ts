@@ -1,12 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CityService } from '@data-access/city/city.service';
-import { FieldService } from '@data-access/field/field.service';
-import { GovernorateService } from '@data-access/governorate/governorate.service';
-import { CityModel } from '@domain/city/city.model';
-import { IFieldModel } from '@domain/field/field.model';
-import { Governorate } from '@domain/governorate/governorate.model';
-import { RadioCardComponent } from '@ui/cards/radio-card/radio-card.component';
+import { CityService, FieldService, GovernorateService } from '@data-access';
+import { CityModel, IFieldModel, Governorate } from '@domain';
+import { RadioCardComponent } from '@ui';
 import { NgSelectComponent } from '@ng-select/ng-select';
 import { ReservationFromState } from '../../state/reservation-from.state';
 

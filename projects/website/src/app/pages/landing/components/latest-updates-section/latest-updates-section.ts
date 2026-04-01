@@ -1,10 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, effect, inject, signal } from '@angular/core';
-import { ArticleApi } from '@data-access/article/article.api';
-import { ArticleModel } from '@domain/article/article.model';
-import { DescCardDto } from '@domain/cards/desc-card.dto';
-import { DescCard } from '@ui/cards/desc-card/desc-card';
-import { SkeletonCard } from '@ui/cards/skeleton-card/skeleton-card';
-import { Carousel, SwiperSlideComponent } from '@ui/carousel/carousel';
+import { ArticleApi } from '@data-access';
+import { ArticleModel } from '@domain';
+import { DescCardDto } from '@domain';
+import { DescCard } from '@ui';
+import { SkeletonCard } from '@ui';
+import { Carousel, SwiperSlideComponent } from '@ui';
 import { map } from 'rxjs';
 
 
