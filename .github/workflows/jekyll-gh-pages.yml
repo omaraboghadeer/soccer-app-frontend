@@ -33,7 +33,7 @@ jobs:
       - name: Build Angular Website
         # Replace 'website' with your actual app name in angular.json
         # The base-href must match your GitHub repository name
-        run: npx ng build website --configuration production
+        run: npx ng build website --configuration production --base-href /soccer-app-frontend/
 
       - name: Fix for GitHub Pages (404 redirect)
         # This copies index.html to 404.html so refreshing routes works
