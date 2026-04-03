@@ -45,6 +45,8 @@
                     "options": {
                         "browser": "projects/website/src/main.ts",
                         "tsConfig": "projects/website/tsconfig.app.json",
+                        "baseHref": "/str8kick/",
+                        "deployUrl": "/str8kick/",
                         "inlineStyleLanguage": "scss",
                         "stylePreprocessorOptions": {
                             "includePaths": [

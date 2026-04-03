@@ -6,6 +6,11 @@
         "outDir": "../../out-tsc/lib",
         "baseUrl": "../../",
         "rootDir": "../..",
+        "paths": {
+            "@domain": ["dist/domain/types/domain.d.ts", "projects/domain/src/public-api.ts"],
+            "@ui": ["dist/ui/types/ui.d.ts", "projects/ui/src/public-api.ts"],
+            "@data-access": ["dist/data-access/types/data-access.d.ts", "projects/data-access/src/public-api.ts"]
+        },
         "declaration": true,
         "declarationMap": true,
         "types": []
