@@ -18,7 +18,7 @@
         "paths": {
             "@ui": [
                 "projects/ui/src/public-api.ts",
-                "dist/ui"
+                "dist/ui/types/ui.d.ts"
             ],
             "@domain": [
                 "projects/domain/src/public-api.ts",
@@ -26,11 +26,11 @@
             ],
             "@data-access": [
                 "projects/data-access/src/public-api.ts",
-                "dist/data-access"
+                "dist/data-access/types/data-access.d.ts"
             ],
             "@auth/*": [
                 "projects/auth/src/public-api.ts",
-                "dist/auth"
+                "dist/auth/types/auth.d.ts"
             ]
         }
     },
