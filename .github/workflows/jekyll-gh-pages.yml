@@ -1,4 +1,4 @@
-name: Deploy Controware Website
+name: Deploy Str8Kick Website
 
 on:
   push:
