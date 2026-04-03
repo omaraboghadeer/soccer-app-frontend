@@ -1,0 +1,88 @@
+<section>
+    <div class="container py-5">
+        <h1>Find Your Reservation</h1>
+        <p class="text-gray-500">
+            View and manage your field reservations
+            <!-- Search for your reservation using your booking reference number -->
+        </p>
+
+        <div class="row mt-5 ">
+            <div class="col-lg-8 h-100 d-grid gap-3">
+                <div class="card card-body bg-white">
+                    <!-- Search Form -->
+                    <form class="d-flex align-items-end gap-3 w-100" (submit)="onSubmit($event)">
+                        <div class="form-group flex-grow-1">
+                            <label class="mb-2 fs-6">
+                                <span class="text-danger fw-bold">*</span>
+                                Booking reference number
+                            </label>
+                            <div class="input-group"
+                                [class.is-invalid]="myBookingSearchForm.ref().invalid() && myBookingSearchForm.ref().touched()"
+                            >
+                                <span class="badge bg-primary-600 rounded-circle me-2" id="bookingRef">
+                                    <i class="icon-search text-white"></i>
+                                </span>
+                                <input type="text" [formField]="myBookingSearchForm.ref" class="form-control" 
+                                    placeholder="e.g,, BK-xxxx-xxxx"
+                                    aria-label="bookingRef" aria-describedby="bookingRef"
+                                />
+                                <button type="submit" class="btn btn-primary">
+                                    Find Your Reservation
+                                </button>
+                            </div>
+                            <div class="form-text">
+                                💡 Try: STR8K-2024-001, STR8K-2024-002, or STR8K-2024-003
+                            </div>
+                            @if (myBookingSearchForm.ref().invalid() && myBookingSearchForm.ref().touched()) {
+                                <div class="text-danger">
+                                    @for (error of myBookingSearchForm.ref().errors(); track error.kind) {
+                                        <small>{{ error.message }}</small>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </form>
+                </div>
+
+                <div class="search-result">
+                    @if (myReservations()) {
+                        <lib-field-card/>
+                    } @else {
+                        <div class="card card-body bg-white align-items-center gap-4 py-5">
+                            <div class="bg-gray-100 rounded-5 p-3 d-grid" 
+                                style="width: 60px; height: 60px; place-content: center;">
+                                <i class="icon-search fs-4"></i>
+                            </div>
+    
+                            <p class="fs-4 text-center">
+                                Search Your Bookings <br>
+                                <small class="text-muted fs-6">
+                                    Enter your booking reference above to view your reservation details
+                                </small>
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-4 position-relative h-100">
+                <a routerLink="new" role="button"  class="card card-body nav-card gap-3  h-auto">
+                    <div class="icon-container ">
+                        <i class="icon-pitch"></i>
+                    </div>
+                    <div>
+                        <h5 class="card-title mb-0">Don't have a booking yet?</h5>
+                        <p class="mb-0">Reserve your perfect soccer field in just a few clicks</p>
+                    </div>
+
+                    <p class="card-link">
+                        Book Now
+                        <i class="icon-arrow-up-right ms-1 fs-9"></i>
+                    </p>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</section>

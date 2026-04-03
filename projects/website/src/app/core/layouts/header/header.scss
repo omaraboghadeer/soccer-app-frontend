@@ -1,7 +1,9 @@
 .nav-link {
-    color: #e5e7eb;
-    
-    &:hover, &.active {
-        color: white;
+    &.in-home {
+        color: #e5e7eb;
+        
+        &:hover, &.active {
+            color: white;
+        }
     }
 }

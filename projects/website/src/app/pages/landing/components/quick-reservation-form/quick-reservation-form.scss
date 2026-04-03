@@ -1,0 +1,19 @@
+.input-group {
+    .badge {
+        height: 30px;
+        width: 30px;
+        display: grid;
+        align-content: center;
+    }
+    input, select {
+        border: none;
+        background-color: transparent;
+        // flex: 1;
+        padding: 0;
+
+        &:focus, &:focus-visible {
+            outline: none;
+        }
+    }
+}
+

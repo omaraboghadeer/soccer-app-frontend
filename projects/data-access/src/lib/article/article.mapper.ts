@@ -1,5 +1,4 @@
-import { ArticleDto } from "@domain/article/article.dto";
-import { ArticleCategory, ArticleModel } from "@domain/article/article.model";
+import { ArticleCategory, ArticleDto, ArticleModel } from "@domain";
 
 export function mapArticle(dto: ArticleDto): ArticleModel {
     return {

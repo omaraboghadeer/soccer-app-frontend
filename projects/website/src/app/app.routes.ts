@@ -6,14 +6,21 @@ export const routes: Routes = [
         path: '',
         component: Layout,
         children: [
+            { path: '', redirectTo: "home", pathMatch: 'full' },
+            { path: '*', redirectTo: "home", pathMatch: 'full' },
+            // { path: '**', redirectTo: "home", pathMatch: 'full' },
             {
-                path: '',
+                path: 'home',
                 loadComponent: () => import('./pages/landing/landing').then(m => m.Landing)
             },
             {
-                path: 'booking',
-                loadChildren: () => import('./pages/booking/booking.routes').then(r => r.routes)
+                path: 'reservations',
+                loadChildren: () => import('./pages/reservations/reservations.routes').then(r => r.RESERVATIONS_ROUTES)
             }
         ]
+    },
+    {
+        path: "auth",
+        loadChildren: () => import('@auth/auth.routes').then(r => r.AUTH_ROUTES)
     }
 ];

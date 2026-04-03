@@ -1,0 +1,107 @@
+<div class="card card-body bg-white shadow">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="images/default-images.png" 
+                class="w-100 object-fit-cover object-fit-position-center rounded-2" 
+                alt="default image" height="100"
+            />
+        </div>
+        <div class="col">
+            <h5 class="card-title">
+                {{ _reservationState.selectedField()?.name }}
+            </h5>
+
+            <div class="d-flex gap-3 mb-2">
+                <a [href]="'tel:' + _reservationState.selectedField()!.phone" title="Field Mobile number">
+                    <p class="card-text">
+                        <i class="icon-phone"></i>
+                        {{ _reservationState.selectedField()!.phone }}
+                    </p>
+                </a>
+                <a href="javascript::void(0)" role="button" (click)="openMap()" title="Open in Google Mapp">
+                    <p class="card-text">
+                        <i class="icon-map-pin"></i>
+                        {{ _reservationState.selectedField()!.address.governorate.name_en }}, 
+                        {{ _reservationState.selectedField()!.address.city.name_en }}
+                    </p>
+                </a>
+            </div>
+
+            <div class="rates d-flex gap-1 ">
+                <div class="badge text-bg-primary">
+                    4.3
+                </div>
+                <p style="font-size: 13px;" class="lh-1 fw-bold">
+                    <small>Excellent </small> <br> 
+                    <small>1,225 Reviews</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="d-flex gap-4">
+        <div class="flex-grow-1">
+            <p>
+                <small>COURT</small>
+            </p>
+            <h5>4</h5>
+        </div>
+        <div class="flex-grow-1">
+            <p>
+                <small>PLAYERS</small>
+            </p>
+            <h5>{{ _reservationState.selectedField()!.supportedSizes[0] }}</h5>
+        </div>
+        <div class="flex-grow-1">
+            <p>
+                <small>DATE</small>
+            </p>
+            <h5>{{ _reservationState.selectedDate() | date: 'fullDate' }}</h5>
+        </div>
+        <div class="flex-grow-1">
+            <p>
+                <small>TIME SLOT</small>
+            </p>
+            <h5> {{ _reservationState.selectedSlots() }} </h5>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="card bg-white shadow overflow-auto">
+    <div class="card-header d-flex justify-content-between bg-white">
+        <h5 class="card-title mb-0">Total reservation price</h5>
+        <h5>{{_reservationState.selectedSlots().length * _reservationState.selectedField()!.price}} EGP</h5>
+    </div>
+
+    <div class="card-header d-flex justify-content-between bg-white">
+        <h5 class="card-title mb-0">Down payment is 25%</h5>
+        <h5>
+            {{
+                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.price) * 0.25
+            }} EGP
+        </h5>
+    </div>
+
+    <div class="card-header d-flex justify-content-between bg-white">
+        <h5 class="card-title mb-0">Amount Paid</h5>
+        <h5>
+            {{
+                (_reservationState.selectedSlots().length * _reservationState.selectedField()!.price) * 0.25
+            }} EGP
+        </h5>
+    </div>
+    
+  
+    <div class="card-footer bg-lavender-100 border-lavender-300">
+        <p class="text-lavender-600">
+            <i class="icon-approved me-1"></i>
+            <small>
+                <strong>We allow free cancellation (100% refund) till 24 hours before your booking</strong>
+            </small>
+        </p>
+    </div>
+</div>

@@ -14,12 +14,17 @@
     }
 }
 
-.card.nav-card .stretched-link {
-    background-color: var(--#{$prefix}gray-100);
+.card.nav-card {
+    background-color: white;
+    text-decoration: none;
+
+    .card-link {
+        font-weight: 500;
+    }
 }
 
-.card.nav-card .stretched-link:hover {
-    background-color: var(--#{$prefix}gray-200);
+.card.nav-card:hover {
+    background: color-mix(in srgb, oklch(51.01% .274 263.83) 5%, white 95%);
 }
 
 .card .card-body {
@@ -44,7 +49,7 @@
 
 .card .card-text {
     --#{$prefix}clamp-lines: 3;
-    
+
     margin-bottom: 0;
     display: -webkit-box;
     -webkit-line-clamp: var(--#{$prefix}clamp-lines);
@@ -52,4 +57,48 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+.nav-card {
+    transition: border-color 0.3s, background-color 0.3s;
+
+    .card-link {
+        position: relative;
+        display: inline-block;
+        width: fit-content;
+
+        background: linear-gradient(
+            140deg,
+            var(--#{$prefix}primary-900) 0%,
+            var(--#{$prefix}primary-700) 15%,
+            var(--#{$prefix}gold-700) 35%,
+            var(--#{$prefix}gray-300) 47%,
+            var(--#{$prefix}gray) 48%,
+            var(--#{$prefix}gray-700) 60%
+        );
+        background-size: 200% 100%;
+        background-position: 100% 0%;
+        /* Start position */
+
+        color: transparent;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        /* Animation */
+        transition: background-position 1s ease-out;
+
+        // will-change: background-position;
+    }
+
+    &:hover {
+        .card-link {
+            color: transparent;
+            background-position: 0% 0%;
+            /* End position (moves completely across the text) */
+        }
+    }
+
 }

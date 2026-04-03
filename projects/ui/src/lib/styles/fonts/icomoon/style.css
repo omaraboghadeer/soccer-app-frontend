@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?5igubg');
-  src:  url('fonts/icomoon.eot?5igubg#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?5igubg') format('truetype'),
-    url('fonts/icomoon.woff?5igubg') format('woff'),
-    url('fonts/icomoon.svg?5igubg#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?setrqj');
+  src:  url('fonts/icomoon.eot?setrqj#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?setrqj') format('truetype'),
+    url('fonts/icomoon.woff?setrqj') format('woff'),
+    url('fonts/icomoon.svg?setrqj#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,14 +25,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-map-pin:before {
-  content: "\e90c";
+.icon-rotate:before {
+  content: "\e914";
 }
-.icon-check-circle:before {
-  content: "\e905";
+.icon-open-eye:before {
+  content: "\e900";
 }
-.icon-check-square:before {
-  content: "\e906";
+.icon-close-eye:before {
+  content: "\e912";
+}
+.icon-player:before {
+  content: "\e911";
+}
+.icon-edit:before {
+  content: "\e910";
+}
+.icon-egypt-map:before {
+  content: "\e90d";
 }
 .icon-stop-watch:before {
   content: "\e90b";
@@ -46,35 +55,14 @@
 .icon-competitions:before {
   content: "\e904";
 }
-.icon-player:before {
-  content: "\e900";
-}
 .icon-pitch:before {
   content: "\e901";
 }
 .icon-pitch-outline:before {
   content: "\e902";
 }
-.icon-calendar:before {
-  content: "\e908";
-}
-.icon-location:before {
-  content: "\e909";
-}
-.icon-feed:before {
-  content: "\e91d";
-}
-.icon-search:before {
-  content: "\e986";
-}
-.icon-arrow-up-left:before {
-  content: "\ea39";
-}
-.icon-arrow-up:before {
-  content: "\ea3a";
-}
-.icon-arrow-up-right:before {
-  content: "\ea3b";
+.icon-locked:before {
+  content: "\e913";
 }
 .icon-clock:before {
   content: "\e90a";
@@ -117,4 +105,31 @@
 }
 .icon-android:before {
   content: "\eac0";
+}
+.icon-phone:before {
+  content: "\e942";
+}
+.icon-user-tie:before {
+  content: "\e976";
+}
+.icon-bin:before {
+  content: "\e9ac";
+}
+.icon-approved:before {
+  content: "\e90f";
+}
+.icon-close:before {
+  content: "\e90e";
+}
+.icon-map-pin:before {
+  content: "\e90c";
+}
+.icon-check-circle:before {
+  content: "\e905";
+}
+.icon-check-square:before {
+  content: "\e906";
+}
+.icon-calendar:before {
+  content: "\e908";
 }

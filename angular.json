@@ -2,7 +2,8 @@
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
     "cli": {
-        "packageManager": "npm"
+        "packageManager": "npm",
+        "analytics": false
     },
     "newProjectRoot": "projects",
     "projects": {
@@ -44,6 +45,8 @@
                     "options": {
                         "browser": "projects/website/src/main.ts",
                         "tsConfig": "projects/website/tsconfig.app.json",
+                        "baseHref": "/str8kick/",
+                        "deployUrl": "/str8kick/",
                         "inlineStyleLanguage": "scss",
                         "stylePreprocessorOptions": {
                             "includePaths": [
@@ -303,6 +306,18 @@
             "root": "projects/auth",
             "sourceRoot": "projects/auth/src",
             "prefix": "lib",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss",
+                    "skipTests": true
+                },
+                "@schematics/angular:service": {
+                    "skipTests": true
+                },
+                "@schematics/angular:guard": {
+                    "skipTests": true
+                }
+            },
             "architect": {
                 "build": {
                     "builder": "@angular/build:ng-packagr",

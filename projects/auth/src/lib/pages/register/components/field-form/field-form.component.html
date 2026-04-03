@@ -1,0 +1,369 @@
+<form class="w-100 mt-4" (submit)="onSubmit($event)" novalidate>
+    <div class="row g-4">
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Field name',
+                    id: 'fieldname',
+                    type: 'text',
+                    icon: 'icon-pitch',
+                    ctrlName: fieldForm.name,
+                    isRequired: true,
+                    placeholder: 'Enter your field name',
+                    errors: fieldForm.name().errors(),
+                    isInvalid: (fieldForm.name().invalid() && fieldForm.name().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Mobile number',
+                    id: 'fieldMobileNumber',
+                    type: 'tel',
+                    icon: 'icon-phone',
+                    ctrlName: fieldForm.phone,
+                    isRequired: true,
+                    placeholder: 'Enter your field mobile number',
+                    errors: fieldForm.phone().errors(),
+                    isInvalid: (fieldForm.phone().invalid() && fieldForm.phone().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label class="mb-2">
+                    <span class="text-danger">*</span>
+                    Governorate
+                </label>
+                <div class="input-group">
+                    <span class="badge bg-primary-600 rounded-circle me-2" id="field-location">
+                        <i class="icon-egypt-map text-white"></i>
+                    </span>
+                    <ng-select
+                        [items]="governorates()" 
+                        bindLabel="name_en" 
+                        bindValue="id"
+                        class="flex-grow-1"
+                        placeholder="Select Governorate"
+                        (change)="onSelectGovernorate($event)"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label class="mb-2">
+                    <span class="text-danger">*</span>
+                    City
+                </label>
+                <div class="input-group">
+                    <span class="badge bg-primary-600 rounded-circle me-2" id="field-location">
+                        <i class="icon-map-pin text-white"></i>
+                    </span>
+                    <ng-select
+                        [items]="cities()" 
+                        bindLabel="name_en" 
+                        bindValue="id"
+                        class="flex-grow-1"
+                        placeholder="Select City"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label class="mb-2">
+                    <span class="text-danger">*</span>
+                    Coordinates
+                </label>
+                <div class="input-group">
+                    <span class="badge bg-primary-600 rounded-circle me-2" id="day">
+                        <i class="icon-map-pin text-white"></i>
+                    </span>
+                    <input type="button" 
+                        [value]="coordinatesValue().lat != 0 ? (coordinatesValue().lat.toFixed(4) + ', ' + coordinatesValue().lng.toFixed(4)) : 'Open map'"
+                        class="form-control text-start"
+                        (click)="openMap(content)"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <div class="d-flex justify-content-between align-items-start">
+                <p>Working hours</p>
+                <div class="form-check">
+                    <input 
+                        type="radio" 
+                        class="form-check-input" 
+                        name="alldayinput" 
+                        id="alldayinput"
+                        value="allday" 
+                    />
+                    <label class="form-check-label" for="alldayinput">
+                        All day
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex gap-3">
+                <div class="flex-grow-1">
+                    <ng-container 
+                        [ngTemplateOutlet]="formGroupTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'Start with',
+                            id: 'workingHoursFrom',
+                            type: 'time',
+                            icon: 'icon-clock',
+                            ctrlName: fieldForm.workingTime.start,
+                            isRequired: true,
+                            placeholder: 'eg., 16:00',
+                            errors: fieldForm.workingTime().errors(),
+                            isInvalid: (fieldForm.workingTime().invalid() && fieldForm.workingTime().touched()),
+                        } }"
+                    ></ng-container>
+                </div>
+                <div class="flex-grow-1">
+                    <ng-container 
+                        [ngTemplateOutlet]="formGroupTemp"
+                        [ngTemplateOutletContext]="{ $implicit: {
+                            label: 'End with',
+                            id: 'workingHoursTo',
+                            type: 'time',
+                            icon: 'icon-clock',
+                            ctrlName: fieldForm.workingTime.end,
+                            isRequired: true,
+                            placeholder: 'eg., 24:00',
+                            errors: fieldForm.workingTime().errors(),
+                            isInvalid: (fieldForm.workingTime().invalid() && fieldForm.workingTime().touched()),
+                        } }"
+                    ></ng-container>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-12">
+            <p class="mb-2"> 
+                <span class="text-danger">*</span>
+                Field Sizes
+            </p>
+
+            <div class="row g-3">
+                <div class="col-sm-4 col-12">
+                    <div class="form-check">
+                        <input 
+                            #size5vs5
+                            type="checkbox" 
+                            class="form-check-input" 
+                            name="fieldSize" 
+                            id="size_5vs5"
+                            value="5vs5" 
+                            (change)="onSelectSize(size5vs5)"
+                        />
+                        <label class="form-check-label" for="size_5vs5">
+                            5 VS 5
+                        </label>
+                    </div>
+                    <div class="slide-down"
+                        [ngClass]="{'open mt-2': size5vs5.checked && showInputsForSize_5}">
+                        <div class="form-group">
+                            <label for="">Price</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Price" 
+                                    aria-label="Price" 
+                                    aria-describedby="Price" 
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Court number / name</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="eg., Court 1, etc" 
+                                    aria-label="Court number" 
+                                    aria-describedby="Court number" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-12">
+                    <div class="form-check">
+                        <input 
+                            #size7vs7
+                            type="checkbox" 
+                            class="form-check-input" 
+                            name="fieldSize" 
+                            id="size_7vs7"
+                            value="7vs7" 
+                            (change)="onSelectSize(size7vs7)"
+                        />
+                        <label class="form-check-label" for="size_7vs7">
+                            7 VS 7
+                        </label>
+                    </div>
+                    <div class="slide-down"
+                        [ngClass]="{'open mt-2': size7vs7.checked && showInputsForSize_7}">
+                        <div class="form-group">
+                            <label for="">Price</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Price" 
+                                    aria-label="Price" 
+                                    aria-describedby="Price" 
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Court number / name</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="eg., Court 1, etc" 
+                                    aria-label="Court number" 
+                                    aria-describedby="Court number" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-12">
+                    <div class="form-check">
+                        <input 
+                            #size11vs11
+                            type="checkbox" 
+                            class="form-check-input" 
+                            name="fieldSize" 
+                            id="size_11vs11"
+                            value="11vs11" 
+                            (change)="onSelectSize(size11vs11)"
+                        />
+                        <label class="form-check-label" for="size_11vs11">
+                            11 VS 11
+                        </label>
+                    </div>
+                    <div class="slide-down"
+                        [ngClass]="{'open mt-2': size11vs11.checked && showInputsForSize_11}">
+                        <div class="form-group">
+                            <label for="">Price</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="Price" 
+                                    aria-label="Price" 
+                                    aria-describedby="Price" 
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Court number / name</label>
+                            <div class="input-group mb-3">
+                                <span 
+                                    class="badge bg-primary-600 rounded-circle me-2"
+                                    id="Price">
+                                    <i class="icon-pitch text-white"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    placeholder="eg., Court 1, etc" 
+                                    aria-label="Court number" 
+                                    aria-describedby="Court number" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+    </div>
+</form>
+
+
+<ng-template #formGroupTemp let-item>
+    <div class="form-group">
+        <label class="mb-2">
+            @if (item.isRequired) {
+                <span class="text-danger fw-bold">*</span>
+            }
+            {{item.label}}
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="item.isInvalid">
+            <span class="badge bg-primary-600 rounded-circle me-2" [id]="item.id">
+                <i class="text-white" [ngClass]="item.icon"></i>
+            </span>
+            <input #inputEle [type]="item.type" [formField]="item.ctrlName" 
+                class="form-control" [placeholder]="item.placeholder" 
+                [attr.aria-label]="item.id" [attr.aria-describedby]="item.id"
+            />
+        </div>
+        @if (item.isInvalid) {
+            <div class="text-danger">
+                @for (error of item.errors; track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+</ng-template>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title p-0 m-0">Field map location!</h4>
+        <button type="button" class="btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <i class="icon-close"></i>
+        </button>
+    </div>
+    <div class="modal-body px-0 pb-0">
+        <lib-map (locationChange)="onLocationChanges($event)" />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" (click)="closeMapModal()">Save</button>
+    </div>
+    
+</ng-template>

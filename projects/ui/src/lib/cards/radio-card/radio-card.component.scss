@@ -1,0 +1,22 @@
+.radio-card {
+    label.card {
+        border-width: 2px;
+        cursor: pointer;
+    }
+}
+
+input:checked {
+    & ~ .card {
+        --selected-color: var(--pci-primary-500);
+
+        background-color: var(--pci-primary-50) !important;
+        color: var(--selected-color);
+        border-color: var(--pci-primary-500);
+        border-width: 2px;
+        transition: all 0.3s ease;
+
+        span.text-muted {
+            color: var(--selected-color) !important;
+        }
+    }
+}

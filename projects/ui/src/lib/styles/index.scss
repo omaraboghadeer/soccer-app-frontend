@@ -1,7 +1,11 @@
+@use "sass:map";
+
 // scss-docs-start import-stack
 
 @use "./fonts/icomoon/style.css";
 @import "./fonts";
+
+
 
 // Configuration
 @import "bootstrap/scss/functions";
@@ -12,6 +16,16 @@ $prefix: pci-;
 
 @import "bootstrap/scss/variables-dark";
 @import "./variables-dark";
+
+// Spacers
+$spacers: map.merge(
+    $spacers, 
+    (
+        6: $spacer * 3.5,
+        7: $spacer * 4,
+        8: $spacer * 4.5,
+    )
+);
 
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
@@ -65,7 +79,7 @@ $prefix: pci-;
 // @import "bootstrap/scss/badge";
 @import "./badge";
 
-// @import "bootstrap/scss/alert";
+@import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/list-group";
 // @import "bootstrap/scss/close";
@@ -157,4 +171,17 @@ $prefix: pci-;
             padding-left: 2.5rem;
         }
     }
+}
+
+
+@import "./ng-select";
+
+
+.ngx-otp-input-box {
+    width: 40px !important;
+    height: 45px !important;
+}
+
+.ngx-otp-input-active {
+    border-color: var(--pci-primary) !important;
 }

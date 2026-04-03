@@ -1,0 +1,156 @@
+<form class="w-100 mt-4" (submit)="onSubmit($event)" novalidate>
+    <div class="row g-3 ">
+        <div class="col-md-6 col-12">
+            <div class="form-group">
+                <label class="mb-2 fs-6">
+                    <span class="text-danger fw-bold">*</span>
+                    First name
+                </label>
+                <div class="input-group"
+                    [class.is-invalid]="signupForm.fname().invalid() && signupForm.fname().touched()">
+                    <span class="badge bg-primary-600 rounded-circle me-2" id="fname">
+                        <i class="icon-player text-white"></i>
+                    </span>
+                    <input type="text" [formField]="signupForm.fname" class="form-control" 
+                        placeholder="Enter your first name"
+                        aria-label="fname" aria-describedby="fname"
+                    />
+                </div>
+                @if (signupForm.fname().invalid() && signupForm.fname().touched()) {
+                    <div class="text-danger">
+                        @for (error of signupForm.fname().errors(); track error.kind) {
+                            <small>{{ error.message }}</small>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Family name',
+                    id: 'lname',
+                    type: 'text',
+                    icon: 'icon-player',
+                    ctrlName: signupForm.lname,
+                    isRequired: true,
+                    placeholder: 'Enter your family name',
+                    errors: signupForm.lname().errors(),
+                    isInvalid: (signupForm.lname().invalid() && signupForm.lname().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Mobile number',
+                    id: 'phone',
+                    type: 'tel',
+                    icon: 'icon-phone',
+                    ctrlName: signupForm.phone,
+                    isRequired: true,
+                    placeholder: 'Enter your mobile number',
+                    errors: signupForm.phone().errors(),
+                    isInvalid: (signupForm.phone().invalid() && signupForm.phone().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Date of birth',
+                    id: 'birthdate',
+                    type: 'date',
+                    icon: 'icon-calendar',
+                    ctrlName: signupForm.birthdate,
+                    isRequired: true,
+                    placeholder: 'DD/MM/YYYY',
+                    errors: signupForm.birthdate().errors(),
+                    isInvalid: (signupForm.birthdate().invalid() && signupForm.birthdate().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Password',
+                    id: 'password',
+                    type: 'password',
+                    icon: 'icon-locked',
+                    ctrlName: signupForm.password,
+                    isRequired: true,
+                    placeholder: 'Enter your password',
+                    errors: signupForm.password().errors(),
+                    isInvalid: (signupForm.password().invalid() && signupForm.password().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <div class="col-md-6 col-12">
+            <ng-container 
+                [ngTemplateOutlet]="formGroupTemp"
+                [ngTemplateOutletContext]="{ $implicit: {
+                    label: 'Confirm password',
+                    id: 'confirmPassword',
+                    type: 'password',
+                    icon: 'icon-locked',
+                    ctrlName: signupForm.confirmPassword,
+                    isRequired: true,
+                    placeholder: 'Enter your confirm password',
+                    errors: signupForm.confirmPassword().errors(),
+                    isInvalid: (signupForm.confirmPassword().invalid() && signupForm.confirmPassword().touched()),
+                } }"
+            ></ng-container>
+        </div>
+
+        <!-- <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">
+                Continue
+            </button>
+        </div> -->
+    </div>
+
+</form>
+
+<ng-template #formGroupTemp let-item>
+    <div class="form-group">
+        <label class="mb-2 fs-6">
+            @if (item.isRequired) {
+                <span class="text-danger fw-bold">*</span>
+            }
+            {{item.label}}
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="item.isInvalid">
+            <span class="badge bg-primary-600 rounded-circle me-2" [id]="item.id">
+                <i class="text-white" [ngClass]="item.icon"></i>
+            </span>
+            <input #inputEle [type]="item.type" [formField]="item.ctrlName" 
+                class="form-control" [placeholder]="item.placeholder" 
+                [attr.aria-label]="item.id" [attr.aria-describedby]="item.id"
+            />
+            @if (item.type === 'password') {
+                <button type="button" class="btn py-1" (click)="showPassword(inputEle)">
+                    <i class="text-primary" 
+                        [ngClass]="inputEle.type == 'text' ? 'icon-open-eye' : 'icon-close-eye'">
+                    </i>
+                </button>
+            }
+        </div>
+        @if (item.isInvalid) {
+            <div class="text-danger">
+                @for (error of item.errors; track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+</ng-template>

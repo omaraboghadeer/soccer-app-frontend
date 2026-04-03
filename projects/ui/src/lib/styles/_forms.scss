@@ -98,6 +98,7 @@
 
 .form-check {
     position: relative;
+    min-height: auto;
 
     &.form-switch {
         min-height: auto;
@@ -150,13 +151,13 @@
 .form-check:has(.form-check-input:hover)::before {
     content: "";
     position: absolute;
-    width: $form-check-input-width + 1em;
-    height: $form-check-input-width + 1em;
+    width: $form-check-input-width + 0.5em;
+    height: $form-check-input-width + 0.5em;
     background-color: var(--#{$prefix}gray-100);
     border-radius: 50%;
     z-index: 1;
-    right: -0.5em;
-    top: -0.5em;
+    inset-block-start: -0.25em;
+    inset-inline-start: -0.25em;
 }
 
 .form-switch .form-check-input {

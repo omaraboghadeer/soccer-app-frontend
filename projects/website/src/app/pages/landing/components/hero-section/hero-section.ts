@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { QuickReservationForm } from "../quick-reservation-form/quick-reservation-form";
 
 @Component({
     selector: 'app-hero-section',
-    imports: [],
+    imports: [QuickReservationForm],
     template: `
         <section class="hero-section">
             <div class="overlay"></div>
@@ -51,51 +52,38 @@ import { Component } from '@angular/core';
                             Book fields, join competitions, build your team, and connect with the street football community. All in one place.
                         </p>
                     </div>
-                </div>
 
-                <div class="card-glass">
-                    <div class="card card-body">
-                        <h3 class="card-title text-start text-capitalize">find your slot fast</h3>
-
-                        <form action="">
-                            <div class="d-flex gap-2">
-                                <div class="input-group align-items-center rounded-5 px-2 py-2 bg-gray-200">
-                                    <span class="badge bg-primary-600 rounded-circle me-2" id="field-location">
-                                        <i class="icon-map-pin text-white"></i>
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="card-glass">
+                            <div class="card card-body bg-white">
+                                <h4 class="d-flex text-capitalize mb-3">
+                                    <span class="badge bg-primary-600 rounded-circle me-2" >
+                                        <i class="icon-pitch-outline text-white"></i>
                                     </span>
-                                    <input type="text" placeholder="Field Location" aria-label="Field Location" aria-describedby="field-location">
-                                </div>
 
-                                <div class="input-group align-items-center rounded-5 px-2 py-2 bg-gray-200">
-                                    <span class="badge bg-primary-600 rounded-circle me-2" id="day">
-                                        <i class="icon-calendar text-white"></i>
-                                    </span>
-                                    <input type="text" placeholder="20-02-2026" aria-label="Day" aria-describedby="day">
-                                </div>
+                                    15 Fields
+                                </h4>
 
-                                <div class="input-group align-items-center rounded-5 px-2 py-2 bg-gray-200">
-                                    <span class="badge bg-primary-600 rounded-circle me-2" id="time">
-                                        <i class="icon-clock text-white"></i>
-                                    </span>
-                                    <input type="text" placeholder="00:00" aria-label="Timing" aria-describedby="time">
-                                </div>
+                                <p class="card-text fs-5 text-capitalize">
+                                    book instantly only verified high-rated fields
+                                </p>
 
-                                <div class="input-group align-items-center rounded-5 px-2 py-2 bg-gray-200">
-                                    <span class="badge bg-primary-600 rounded-circle me-2" id="duration">
-                                        <i class="icon-stop-watch text-white"></i>
-                                    </span>
-                                    <input type="text" placeholder="1 Hour" aria-label="Book duration" aria-describedby="duration">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary pe-1 rounded-5">
-                                    Check Availability
-
-                                    <span class="badge ms-2 bg-white rounded-circle">
-                                        <i class="icon-arrow-up-right text-black" style="font-size: 0.5rem;"></i>
+                                <button type="button" class="btn btn-gray pe-1 py-1 rounded-5 mt-4" style="width: fit-content;">
+                                    Explore All Fields
+                                    <span class="badge ms-2 bg-primary rounded-circle">
+                                        <i class="icon-arrow-up-right text-white"></i>
                                     </span>
                                 </button>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-glass mt-5">
+                    <div class="card card-body bg-white">
+                        <h3 class="card-title text-start text-capitalize mb-3">find your slot fast</h3>
+
+                        <app-quick-reservation-form/>
                     </div>
                 </div>
             </div>

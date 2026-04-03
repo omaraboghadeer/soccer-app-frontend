@@ -5,6 +5,10 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/lib",
         "baseUrl": "../../",
+        "rootDir": "../..",
+        "paths": {
+            "@domain": ["dist/domain/types/domain.d.ts", "projects/domain/src/public-api.ts"]
+        },
         "declaration": true,
         "declarationMap": true,
         "types": []

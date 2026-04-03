@@ -1,0 +1,21 @@
+<div class="radio-card">
+    <input type="radio" [name]="ctrlName()" [id]="id()" class="d-none"
+        (change)="selectionChange.emit(data())">
+    <label for="{{ id() }}" class="card card-body bg-white gap-3 h-100">
+        <img src="images/default-images.png" 
+            class="card-img-top object-fit-cover rounded" 
+            alt="Default Image" height="150">
+
+        <div class="d-flex justify-content-between">
+            <span class="badge badge-info">
+                <i class="icon-map-pin me-2"></i>
+                {{ data().address.city.name_en }}, {{ data().address.governorate.name_en }}
+            </span>
+            <span class="text-muted fw-bold">
+                {{ data().price }} EGP/hr
+            </span>
+        </div>
+
+        <h2 class="card-title m-0">{{ data().name }}</h2>
+    </label>
+</div>

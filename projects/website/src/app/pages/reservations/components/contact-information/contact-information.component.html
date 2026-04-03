@@ -1,0 +1,77 @@
+<form class="d-grid gap-3" (submit)="onSubmit($event)">
+    <div class="form-group">
+        <label class="mb-2 fs-6">
+            <span class="text-danger fw-bold">*</span>
+            First Name
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="contactForm.firstName().invalid() && contactForm.firstName().touched()"
+        >
+            <span class="badge bg-primary-600 rounded-circle me-2" id="firstname">
+                <i class="icon-player text-white"></i>
+            </span>
+            <input type="text" class="form-control" 
+                placeholder="Enter your first name"
+                [formField]="contactForm.firstName"
+                aria-label="firstname" aria-describedby="firstname"
+            />
+        </div>
+        @if (contactForm.firstName().invalid() && contactForm.firstName().touched()) {
+            <div class="text-danger">
+                @for (error of contactForm.firstName().errors(); track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label class="mb-2 fs-6">
+            <span class="text-danger fw-bold">*</span>
+            Last Name
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="contactForm.lastName().invalid() && contactForm.lastName().touched()"
+        >
+            <span class="badge bg-primary-600 rounded-circle me-2" id="lastname">
+                <i class="icon-player text-white"></i>
+            </span>
+            <input type="text" [formField]="contactForm.lastName" class="form-control" 
+                placeholder="Enter your family name"
+                aria-label="lastname" aria-describedby="lastname"
+            />
+        </div>
+        @if (contactForm.lastName().invalid() && contactForm.lastName().touched()) {
+            <div class="text-danger">
+                @for (error of contactForm.lastName().errors(); track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label class="mb-2 fs-6">
+            <span class="text-danger fw-bold">*</span>
+            Mobile Number
+        </label>
+        <div class="input-group"
+            [class.is-invalid]="contactForm.mobile().invalid() && contactForm.mobile().touched()"
+        >
+            <span class="badge bg-primary-600 rounded-circle me-2" id="mobile">
+                <i class="icon-phone text-white"></i>
+            </span>
+            <input type="tel" [formField]="contactForm.mobile" class="form-control" 
+                placeholder="Enter your mobile number"
+                aria-label="mobile" aria-describedby="mobile"
+            />
+        </div>
+         @if (contactForm.mobile().invalid() && contactForm.mobile().touched()) {
+            <div class="text-danger">
+                @for (error of contactForm.mobile().errors(); track error.kind) {
+                    <small>{{ error.message }}</small>
+                }
+            </div>
+        }
+    </div>
+</form>

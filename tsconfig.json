@@ -16,17 +16,21 @@
         "module": "preserve",
         "baseUrl": "./",
         "paths": {
-            "@ui/*": [
-                "projects/ui/src/lib/*"
+            "@ui": [
+                "projects/ui/src/public-api.ts",
+                "dist/ui"
             ],
-            "@domain/*": [
-                "projects/domain/src/lib/*"
+            "@domain": [
+                "projects/domain/src/public-api.ts",
+                "dist/domain/types/domain.d.ts"
             ],
-            "@data-access/*": [
-                "projects/data-access/src/lib/*"
+            "@data-access": [
+                "projects/data-access/src/public-api.ts",
+                "dist/data-access"
             ],
             "@auth/*": [
-                "projects/auth/src/lib/*"
+                "projects/auth/src/public-api.ts",
+                "dist/auth"
             ]
         }
     },
@@ -38,35 +42,35 @@
     },
     "files": [],
     "references": [
-      {
-        "path": "./projects/website/tsconfig.app.json"
-      },
-      {
-        "path": "./projects/ui/tsconfig.lib.json"
-      },
-      {
-        "path": "./projects/ui/tsconfig.spec.json"
-      },
-      {
-        "path": "./projects/domain/tsconfig.lib.json"
-      },
-      {
-        "path": "./projects/domain/tsconfig.spec.json"
-      },
-      {
-        "path": "./projects/data-access/tsconfig.lib.json"
-      },
-      {
-        "path": "./projects/data-access/tsconfig.spec.json"
-      },
-      {
-        "path": "./projects/auth/tsconfig.lib.json"
-      },
-      {
-        "path": "./projects/auth/tsconfig.spec.json"
-      },
-      {
-        "path": "./projects/portal/tsconfig.app.json"
-      }
+        {
+            "path": "./projects/website/tsconfig.app.json"
+        },
+        {
+            "path": "./projects/ui/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/ui/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/domain/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/domain/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/data-access/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/data-access/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/auth/tsconfig.lib.json"
+        },
+        {
+            "path": "./projects/auth/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/portal/tsconfig.app.json"
+        }
     ]
 }

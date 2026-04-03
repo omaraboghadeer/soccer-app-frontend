@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from "@angular/core";
 import { ArticleApi } from "./article.api";
-import { ArticleModel } from "@domain/article/article.model";
+import { ArticleModel } from "@domain";
 
 @Injectable({ providedIn: 'root' })
 export class ArticleStore {
