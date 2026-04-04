@@ -19,7 +19,7 @@ export class MyReservationPage {
     private readonly _reservationService = inject(ReservationApiService);
 
     myReservations = signal<Reservation | undefined>(undefined);
-    private myBookingSearchModel = signal({ref: ''});
+    private myBookingSearchModel = signal({ref: 'BK-2026-0002'});
     myBookingSearchForm = form<{ref: string}>(
         this.myBookingSearchModel, 
         (fieldPath) => {

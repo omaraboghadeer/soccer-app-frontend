@@ -11,7 +11,7 @@ import * as CITIES from '../data/static/eg_cities.json';
 export class CityService extends ApiService implements CityRepository {
   
     getCities(governorateId: string): Observable<CityModel[]> {
-        return of(CITIES.data.filter(city => city.governorate_id === governorateId));
+        return of(CITIES.data.filter(city => city.governorate_id === governorateId) as CityModel[]);
     }
 
 }

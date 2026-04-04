@@ -11,7 +11,7 @@ import * as Govs from '../data/static/eg_governorates.json';
 export class GovernorateService extends ApiService implements GovernorateRepository {
 
     getGovernorates(): Observable<Governorate[]> {
-        return of(Govs.data);
+        return of(Govs.data as Governorate[]);
     }
   
 }

@@ -11,6 +11,7 @@
         "lib:ui:build": "ng build ui",
         "lib:data-access:build": "ng build data-access",
         "lib:auth:build": "ng build auth",
+        "build:all-libs": "npm run lib:domain:build && npm run lib:data-access:build && npm run lib:ui:build && npm run lib:auth:build",
         "serve:ssr:website": "node dist/website/server/server.mjs",
         "start:website": "ng serve website",
         "build:website": "ng build website",
