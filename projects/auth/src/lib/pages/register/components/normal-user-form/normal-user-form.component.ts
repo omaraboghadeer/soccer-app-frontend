@@ -14,12 +14,12 @@ export class NormalUserFormComponent {
     protected readonly _registrationService = inject(RegistrationService);
 
     private registerModel = signal<IRegisterFormData>({
-        fname: '',
-        lname: '',
+        fname: 'omar',
+        lname: 'khalifa',
         phone: '',
         password: '',
         confirmPassword: '',
-        birthdate: new Date(),
+        birthdate: new Date(1994, 10, 19),
         role: "normal"
     });
 
