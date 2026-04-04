@@ -1,0 +1,60 @@
+name: Deploy Str8Kick Website
+
+on:
+  push:
+    branches: ["production"] # Triggers when you push to the production branch
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Recommended for Angular 21
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular Website
+        # Replace 'website' with your actual app name in angular.json
+        # The base-href must match your GitHub repository name
+        run: npx ng build website --configuration production --base-href /soccer-app-frontend/
+
+      - name: Fix for GitHub Pages (404 redirect)
+        # This copies index.html to 404.html so refreshing routes works
+        run: cp dist/website/browser/index.html dist/website/browser/404.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # IMPORTANT: Angular SSR puts the static files in dist/[project]/browser
+          path: dist/website/browser
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
